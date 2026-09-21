@@ -443,6 +443,11 @@ a{ color: inherit; text-decoration: none; }
 .realisation--inverse .realisation__images{ grid-column: 5 / 13; }
 .realisation--inverse .realisation__texte{ grid-column: 1 / 5; }
 
+/* Photo unique de définition modeste : colonne d'image resserrée, pour ne pas
+   l'étirer au-delà de ce que le fichier permet. */
+.realisation--compact .realisation__images{ grid-column: 1 / 7; }
+.realisation--compact.realisation--inverse .realisation__images{ grid-column: 7 / 13; }
+
 /* Photo au format portrait : image étroite, texte plus large à côté. */
 .realisation--vertical{ align-items: center; }
 .realisation--vertical .realisation__images{ grid-column: 1 / 5; }
@@ -782,6 +787,8 @@ a{ color: inherit; text-decoration: none; }
   .realisation--inverse .realisation__texte{ grid-column: 1 / 6; }
   .realisation--vertical .realisation__images{ grid-column: 1 / 6; }
   .realisation--vertical .realisation__texte{ grid-column: 7 / 13; }
+  .realisation--compact .realisation__images{ grid-column: 1 / 7; }
+  .realisation--compact.realisation--inverse .realisation__images{ grid-column: 7 / 13; }
   .realisations__chapo{ grid-column: 1 / 9; }
 
   .portrait__figure{ grid-column: 1 / 6; }
@@ -849,7 +856,9 @@ a{ color: inherit; text-decoration: none; }
   .realisation--inverse .realisation__images,
   .realisation--inverse .realisation__texte,
   .realisation--vertical .realisation__images,
-  .realisation--vertical .realisation__texte{ grid-column: 1 / -1; }
+  .realisation--vertical .realisation__texte,
+  .realisation--compact .realisation__images,
+  .realisation--compact.realisation--inverse .realisation__images{ grid-column: 1 / -1; }
   .realisation--inverse .realisation__images{ order: 1; }
   .realisation--inverse .realisation__texte{ order: 2; }
   /* Les deux photos d'un duo se posent l'une sous l'autre, sans décalage. */

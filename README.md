@@ -28,7 +28,8 @@ Tout ce qui suit a été écrit faute d'information et doit être relu ou rempla
 
 ### Dates manquantes — le plus urgent
 Trois réalisations n'affichent **aucune année**, faute de l'avoir : **Palm Ourika**,
-**Palm Casablanca** et **Mazagan**. Le Royal Golf Marrakech porte « En cours ».
+**Palm Casablanca** et **Mazagan**. La page en compte cinq — le Golf d'Agadir n'y
+figure plus, mais ses photos restent dans le héros et dans la section du métier. Le Royal Golf Marrakech porte « En cours ».
 Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 `<div><dt>Année</dt><dd>2014</dd></div>`.
 
@@ -39,10 +40,10 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 - **Citation du portrait** — « On ne dessine pas un trou de la même manière quand
   on l'a joué sous pression. » Inventée : elle doit devenir une vraie phrase de
   Stéphane, ou disparaître.
-- **Descriptifs des six réalisations** — plausibles mais non vérifiés, en
-  particulier : le tracé d'Agadir, l'orientation des greens de Palm Ourika vers
-  l'Atlas, les arbres conservés à Palm Casablanca, le parcours de la Palmeraie
-  resté en service pendant les travaux.
+- **Descriptifs des cinq réalisations** — plausibles mais non vérifiés, en
+  particulier : l'orientation des greens de Palm Ourika vers l'Atlas, les arbres
+  conservés à Palm Casablanca, le parcours de la Palmeraie resté en service
+  pendant les travaux.
 - **Les deux paragraphes de la section Carrière** — « quatre continents », la
   lecture des greens, le rapport entre le jeu et le dessin.
 - **Biographie du portrait** — sauf la mention de la couverture d'avril 1999,
@@ -76,13 +77,12 @@ puis déclinée en plusieurs largeurs.
 | `agadir-plan-trous12-16` | AGA-Vue12-16v2 | −6,5 % à droite (✦) | métier — 02 Conception, **bichromie** |
 | `ourika-modelage` | Palmourika2 | — | métier — 03 Réalisation |
 | `agadir-green14-jeu` | AGA-VueDepuisGreen14 | −6,5 % à droite (✦) | métier — 04 Exploitation |
-| `agadir-trous12-16-littoral` | AGA-VueGolfTrous12-16 | −4 % à droite (icônes) | réalisation 01 |
-| `ourika-crepuscule` · `ourika-clubhouse` | Palmourika3 · palmourika1 | — | réalisation 02 |
-| `casablanca-ensemble` · `casablanca-jacaranda` | palmcasa1 · Palmcasa2 | — | réalisation 03 |
-| `palmeraie-ensemble` · `palmeraie-fairways` | ExtensionPalmeraie2009 · -3 | −21 % en bas (FlyOverGreen) | réalisation 04 |
+| `ourika-crepuscule` · `ourika-clubhouse` | Palmourika3 · palmourika1 | — | réalisation 01 |
+| `casablanca-ensemble` · `casablanca-jacaranda` | palmcasa1 · Palmcasa2 | — | réalisation 02 |
+| `palmeraie-green-modeles` · `palmeraie-fairways` | **mazagan1** · ExtensionPalmeraie2009-3 | −21 % en bas sur la seconde | réalisation 03 |
 | `palmeraie-panoramique` | ExtensionPalmeraie2009-2 | −5 % en bas (logo) | bandeau pleine largeur |
-| `mazagan-panoramique` · `mazagan-links` | mazagan1 · mazagan | — | réalisation 05 |
-| `royal-marrakech-site` | RGM-PhotoSiteGolfRoyal2025 | — | réalisation 06 |
+| `mazagan-links` | mazagan | — | réalisation 04 |
+| `royal-marrakech-site` | RGM-PhotoSiteGolfRoyal2025 | — | réalisation 05 |
 | `stephane-portrait` | StephaneTalbot | recadré en 4/5 | portrait |
 | `couverture-golf-1999` | STalbot-MagasineQuebec | marges resserrées | carrière |
 | `stephane-1999` · `stephane-canberra` | Talvest_chest2 · DSC_0040 | — | carrière |
@@ -95,6 +95,14 @@ passe en bichromie vert/crème (`.figure--bichromie`).
 (Palm Ourika, Palm Casablanca, Mazagan links). Elles sont donc placées dans des
 colonnes étroites et ne peuvent pas passer en pleine largeur sans devenir floues.
 Des fichiers plus grands permettraient des compositions plus généreuses.
+
+**Photos non utilisées** : `agadir-trous12-16-littoral` (le Golf d'Agadir n'est plus
+listé comme réalisation) et `palmeraie-ensemble` (doublon de la vue panoramique)
+ont été retirés du dépôt ; les originaux restent dans le dossier source.
+
+**Attention au nom de fichier `mazagan1.jpg`** : malgré son nom, cette photo montre
+l'extension de la Palmeraie, pas Mazagan. Elle est publiée sous le nom
+`palmeraie-green-modeles`.
 
 **Manque toujours** : la photo avec le trophée, annoncée mais absente du dossier.
 
@@ -124,7 +132,8 @@ site, une autorisation peut être nécessaire — c'est un point à vérifier.
 Dans `index.html`, dupliquer un bloc `<article class="realisation">` :
 
 1. alterner `realisation--inverse` d'un projet au suivant (image à gauche, puis à droite) ;
-2. `realisation--vertical` pour une photo au format portrait ;
+2. `realisation--vertical` pour une photo au format portrait, `realisation--compact`
+   pour resserrer la colonne d'image quand la photo est de définition modeste ;
 3. un seul `<figure>` dans `.realisation__images` occupe toute la largeur ; deux
    `<figure>` avec `realisation__images--duo` se partagent l'espace en 7/4 ;
 4. renuméroter `data-index` et le `<p class="realisation__numero">` ;

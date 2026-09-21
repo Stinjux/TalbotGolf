@@ -186,6 +186,7 @@
      POUR AJOUTER UNE RÉALISATION : dupliquer un bloc <article class="realisation"> ci-dessous.
        · alterner la classe « realisation--inverse » d'un projet à l'autre (texte à droite, puis à gauche) ;
        · « realisation--vertical » pour une photo au format portrait (image étroite, texte à côté) ;
+       · « realisation--compact » resserre la colonne d'image, pour une photo de définition modeste ;
        · un seul <figure> dans .realisation__images occupe toute la largeur ; deux <figure> avec
          la classe « realisation__images--duo » se partagent l'espace en 7/4 ;
        · renuméroter data-index et le <p class="realisation__numero"> ;
@@ -197,39 +198,14 @@
   <div class="grille realisations__intro">
     <p class="surtitre reveal">Réalisations</p>
     <h2 class="titre-masque titre-h2">
-      <span class="ligne"><span class="ligne__i">Six parcours,</span></span>
+      <span class="ligne"><span class="ligne__i">Cinq parcours,</span></span>
       <span class="ligne"><span class="ligne__i">deux manières d'y être.</span></span>
     </h2>
-    <p class="realisations__chapo reveal">Quatre qu'il a dessinés, remodelés ou étendus. Deux qu'il n'a pas signés, mais dont il conduit la rénovation, la gestion et l'entretien.</p>
+    <p class="realisations__chapo reveal">Trois qu'il a dessinés, remodelés ou étendus. Deux qu'il n'a pas signés, mais dont il conduit la rénovation, la gestion et l'entretien.</p>
   </div>
 
-  <!-- ---------- 01 — Golf d'Agadir ---------- -->
+  <!-- ---------- 01 — Palm Ourika ---------- -->
   <article class="realisation" data-index="01">
-    <div class="realisation__images">
-      <figure class="figure masque parallaxe">
-        <div class="cadre"><img src="public/images/agadir-trous12-16-littoral-1600.jpg"
-             srcset="public/images/agadir-trous12-16-littoral-900.jpg 900w,
-                     public/images/agadir-trous12-16-littoral-1600.jpg 1600w,
-                     public/images/agadir-trous12-16-littoral-2400.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 60vw" width="2400" height="1015" loading="lazy" decoding="async"
-             alt="Les trous 12 à 16 du golf d'Agadir déroulés le long de la côte atlantique au coucher du soleil, entre la falaise, la plage et les palmiers."></div>
-        <figcaption class="legende">Les trous 12 à 16 suivent la falaise — vue d'étude, janvier 2026</figcaption>
-      </figure>
-    </div>
-    <div class="realisation__texte">
-      <p class="realisation__numero reveal">01</p>
-      <h3 class="realisation__titre reveal">Golf d'Agadir</h3>
-      <dl class="fiche reveal">
-        <div><dt>Lieu</dt><dd>Agadir, Maroc</dd></div>
-        <div><dt>Année</dt><dd>2025 — 2026</dd></div>
-        <div><dt>Intervention</dt><dd>Conception d'un parcours de 18 trous</dd></div>
-      </dl>
-      <p class="reveal">Un parcours dessiné entre la route et l'océan, sur un terrain sec et ouvert au vent. Le tracé remonte le relief sur les neuf premiers trous, puis redescend chercher la falaise&nbsp;: les trous 12 à 16 se jouent face à la mer, greens posés au plus près du bord sans jamais toucher au cordon dunaire. Modelés dessinés pour limiter les surfaces arrosées et tenir la consommation d'eau au plus juste.</p>
-    </div>
-  </article>
-
-  <!-- ---------- 02 — Palm Ourika (texte à gauche) ---------- -->
-  <article class="realisation realisation--inverse" data-index="02">
     <div class="realisation__images realisation__images--duo">
       <figure class="figure masque parallaxe">
         <div class="cadre"><img src="public/images/ourika-crepuscule-1024.jpg"
@@ -249,7 +225,7 @@
       </figure>
     </div>
     <div class="realisation__texte">
-      <p class="realisation__numero reveal">02</p>
+      <p class="realisation__numero reveal">01</p>
       <h3 class="realisation__titre reveal">Palm Ourika</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
@@ -259,8 +235,8 @@
     </div>
   </article>
 
-  <!-- ---------- 03 — Palm Casablanca ---------- -->
-  <article class="realisation" data-index="03">
+  <!-- ---------- 02 — Palm Casablanca (texte à gauche) ---------- -->
+  <article class="realisation realisation--inverse" data-index="02">
     <div class="realisation__images realisation__images--duo">
       <figure class="figure masque parallaxe">
         <div class="cadre"><img src="public/images/casablanca-ensemble-768.jpg"
@@ -280,7 +256,7 @@
       </figure>
     </div>
     <div class="realisation__texte">
-      <p class="realisation__numero reveal">03</p>
+      <p class="realisation__numero reveal">02</p>
       <h3 class="realisation__titre reveal">Palm Casablanca</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>Casablanca, Maroc</dd></div>
@@ -290,17 +266,17 @@
     </div>
   </article>
 
-  <!-- ---------- 04 — Extension de la Palmeraie (texte à gauche) ---------- -->
-  <article class="realisation realisation--inverse" data-index="04">
+  <!-- ---------- 03 — Extension de la Palmeraie ---------- -->
+  <article class="realisation" data-index="03">
     <div class="realisation__images realisation__images--duo">
       <figure class="figure masque parallaxe">
-        <div class="cadre"><img src="public/images/palmeraie-ensemble-1600.jpg"
-             srcset="public/images/palmeraie-ensemble-900.jpg 900w,
-                     public/images/palmeraie-ensemble-1600.jpg 1600w,
-                     public/images/palmeraie-ensemble-2400.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 38vw" width="2400" height="1264" loading="lazy" decoding="async"
-             alt="Vue aérienne de l'extension du parcours de la Palmeraie à Marrakech : fairways verts, plan d'eau central, bunkers en forme libre et palmeraie en arrière-plan."></div>
-        <figcaption class="legende">Le plan d'eau du nouveau tracé — Marrakech</figcaption>
+        <div class="cadre"><img src="public/images/palmeraie-green-modeles-1600.jpg"
+             srcset="public/images/palmeraie-green-modeles-900.jpg 900w,
+                     public/images/palmeraie-green-modeles-1600.jpg 1600w,
+                     public/images/palmeraie-green-modeles-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 38vw" width="2400" height="1315" loading="lazy" decoding="async"
+             alt="Green de l'extension de la Palmeraie vu du sol : modelés en creux et en butte au premier plan, longs bâtiments alignés sur la crête en arrière-plan."></div>
+        <figcaption class="legende">Les modelés du nouveau tracé, vus du départ</figcaption>
       </figure>
       <figure class="figure masque">
         <div class="cadre"><img src="public/images/palmeraie-fairways-1600.jpg"
@@ -313,7 +289,7 @@
       </figure>
     </div>
     <div class="realisation__texte">
-      <p class="realisation__numero reveal">04</p>
+      <p class="realisation__numero reveal">03</p>
       <h3 class="realisation__titre reveal">Extension de la Palmeraie</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
@@ -338,29 +314,20 @@
   <!-- Charnière : on passe des parcours dessinés à ceux qui sont exploités -->
   <p class="realisations__charniere reveal">Deux parcours qu'il n'a pas dessinés — et qu'il fait tenir.</p>
 
-  <!-- ---------- 05 — Mazagan ---------- -->
-  <article class="realisation" data-index="05">
-    <div class="realisation__images realisation__images--duo">
+  <!-- ---------- 04 — Mazagan (texte à gauche, colonne d'image resserrée) ---------- -->
+  <article class="realisation realisation--inverse realisation--compact" data-index="04">
+    <div class="realisation__images">
       <figure class="figure masque parallaxe">
-        <div class="cadre"><img src="public/images/mazagan-panoramique-1600.jpg"
-             srcset="public/images/mazagan-panoramique-900.jpg 900w,
-                     public/images/mazagan-panoramique-1600.jpg 1600w,
-                     public/images/mazagan-panoramique-2400.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 38vw" width="2400" height="1315" loading="lazy" decoding="async"
-             alt="Green de Mazagan en contrebas, modelés de fairway au premier plan et bâtiments du resort alignés sur l'horizon, face à l'Atlantique."></div>
-        <figcaption class="legende">Le parcours et le resort, face à l'Atlantique</figcaption>
-      </figure>
-      <figure class="figure masque">
         <div class="cadre"><img src="public/images/mazagan-links-1024.jpg"
              srcset="public/images/mazagan-links-900.jpg 900w,
                      public/images/mazagan-links-1024.jpg 1024w"
-             sizes="(max-width: 900px) 100vw, 21vw" width="1024" height="683" loading="lazy" decoding="async"
+             sizes="(max-width: 900px) 100vw, 43vw" width="1024" height="683" loading="lazy" decoding="async"
              alt="Trou de Mazagan bordé de fescues hautes et de sable nu, green posé au creux du relief dans une lumière rasante."></div>
         <figcaption class="legende">Fescues et sable nu&nbsp;: un entretien de links</figcaption>
       </figure>
     </div>
     <div class="realisation__texte">
-      <p class="realisation__numero reveal">05</p>
+      <p class="realisation__numero reveal">04</p>
       <h3 class="realisation__titre reveal">Mazagan</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>El Jadida, Maroc</dd></div>
@@ -370,8 +337,8 @@
     </div>
   </article>
 
-  <!-- ---------- 06 — Royal Golf Marrakech (photo verticale) ---------- -->
-  <article class="realisation realisation--vertical" data-index="06">
+  <!-- ---------- 05 — Royal Golf Marrakech (photo verticale) ---------- -->
+  <article class="realisation realisation--vertical" data-index="05">
     <div class="realisation__images">
       <figure class="figure masque parallaxe">
         <div class="cadre"><img src="public/images/royal-marrakech-site-1400.jpg"
@@ -384,7 +351,7 @@
       </figure>
     </div>
     <div class="realisation__texte">
-      <p class="realisation__numero reveal">06</p>
+      <p class="realisation__numero reveal">05</p>
       <h3 class="realisation__titre reveal">Royal Golf Marrakech</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
