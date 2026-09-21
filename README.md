@@ -79,7 +79,7 @@ puis déclinée en plusieurs largeurs.
 | `agadir-green14-jeu` | AGA-VueDepuisGreen14 | −6,5 % à droite (✦) | métier — 04 Exploitation |
 | `ourika-crepuscule` · `ourika-clubhouse` | Palmourika3 · palmourika1 | — | réalisation 01 |
 | `casablanca-ensemble` · `casablanca-jacaranda` | palmcasa1 · Palmcasa2 | — | réalisation 02 |
-| `palmeraie-ensemble` · `palmeraie-fairways` | ExtensionPalmeraie2009 · -3 | −21 % en bas (FlyOverGreen) | réalisation 03 |
+| `palmeraie-ensemble` | ExtensionPalmeraie2009 | −21 % en bas (FlyOverGreen) | réalisation 03 |
 | `palmeraie-panoramique` | ExtensionPalmeraie2009-2 | −5 % en bas (logo) | bandeau pleine largeur |
 | `mazagan-green-resort` · `mazagan-links` | mazagan1 · mazagan | — | réalisation 04 |
 | `royal-marrakech-site` | RGM-PhotoSiteGolfRoyal2025 | — | réalisation 05 |
@@ -96,9 +96,11 @@ passe en bichromie vert/crème (`.figure--bichromie`).
 colonnes étroites et ne peuvent pas passer en pleine largeur sans devenir floues.
 Des fichiers plus grands permettraient des compositions plus généreuses.
 
-**Photo non utilisée** : `agadir-trous12-16-littoral` a été retirée du dépôt, le
-Golf d'Agadir n'étant plus listé comme réalisation. L'original reste dans le
-dossier source.
+**Photos non utilisées** : `agadir-trous12-16-littoral` (le Golf d'Agadir n'est plus
+listé comme réalisation) et `ExtensionPalmeraie2009-3` — cette dernière est le même
+cliché que `ExtensionPalmeraie2009-2`, simplement moins recadré : mêmes bassins,
+mêmes jets d'eau, même horizon. Seule la version panoramique est publiée. Les
+originaux restent dans le dossier source.
 
 **Manque toujours** : la photo avec le trophée, annoncée mais absente du dossier.
 
