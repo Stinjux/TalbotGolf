@@ -1,0 +1,110 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TalbotGolf — Conseil, conception et rénovation</title><meta name="description" content="Du dessin à l'exploitation. Une expertise de terrain en conseil, conception et rénovation de parcours de golf, avec une expérience internationale et un ancrage fort en Afrique."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
+/* Identité, mobile d'abord. Le gris supplémentaire est réservé aux filets demandés. */
+:root{--green:#0A2E21;--ink:#201E1D;--paper:#F3F2F2;--white:#FFFFFF;--line:#D9D7D6;--space:clamp(22px,6vw,90px)}
+*,*::before,*::after{box-sizing:border-box;border-radius:0!important;box-shadow:none!important}html{scroll-padding-top:24px}body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.75 Archivo,Arial,sans-serif;text-align:left}h1,h2,h3,p,figure{margin:0}h1,h2,h3{font-weight:700;color:var(--green);line-height:1.15;letter-spacing:-.025em}h1{font-size:clamp(2.6rem,5.4vw,5rem);max-width:850px}h2{font-size:clamp(1.9rem,3.3vw,3rem)}h3{font-size:1.35rem}p+p{margin-top:18px}a{color:var(--green);text-underline-offset:5px;transition:color 150ms ease-out}a:hover{color:var(--ink)}:focus-visible{outline:2px solid currentColor;outline-offset:5px}img{max-width:100%;height:auto;filter:grayscale(1)}.wrap{max-width:1320px;margin:0 auto;padding-left:var(--space);padding-right:var(--space)}
+/* Les deux SVG partagent une ligne de base exacte, sans dépendre de la descente de police.
+   Sol : 92 sur viewBox [8,102] => 10 unités sous le sol. Texte : baseline 56 sur 70.
+   Corrections négatives proportionnelles ; écart = 2 × le trait affiché (5 × .46em /13). */
+.brand{--symbol-width:3.25em;--word-width:7.75em;display:inline-flex;align-items:flex-end;gap:.25em;color:inherit;line-height:1;font-size:24px}.brand-symbol{display:block;width:var(--symbol-width);height:2.35em;margin-bottom:-.25em;flex:none;overflow:visible}.brand-word{display:block;width:var(--word-width);height:1.944444em;margin-bottom:-.388889em;flex:none;overflow:visible}.brand-word text{letter-spacing:-1.4px}.brand-link{display:inline-block;color:var(--green);text-decoration:none}.header{padding-top:30px;padding-bottom:26px;display:flex;flex-wrap:wrap;align-items:center;gap:28px;border-bottom:1px solid var(--line)}nav{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}nav a{text-decoration:none}.language{margin-left:auto;font-size:14px}.skip{position:absolute;left:20px;top:-80px;background:var(--white);padding:8px}.skip:focus{top:10px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;color:var(--green)}.hero{padding-top:60px;padding-bottom:60px}.hero .brand{font-size:28px;margin-bottom:50px}.hero-intro{max-width:620px;margin-top:28px;font-size:18px}.button{display:inline-block;margin-top:28px;padding:12px 20px;background:var(--white);border:1px solid var(--green);text-decoration:none;font-size:15px;transition:color 150ms ease-out}.button:hover{color:var(--ink)}section+section{border-top:1px solid var(--line)}.section{padding-top:55px;padding-bottom:55px}.heading{margin-bottom:35px}.heading p{max-width:620px;margin-top:20px}.columns{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}.card{background:var(--white);padding:30px}.card .index{font-size:12px;color:var(--green);display:block;margin-bottom:20px}.card h3{margin-bottom:18px}.references-intro{max-width:780px;margin-top:22px}.facts{display:grid;gap:25px;margin-top:35px;padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.fact strong{font-size:36px;font-weight:700;color:var(--green);display:block;line-height:1.3}.fact span{font-size:14px}.projects{display:grid;gap:30px;margin-top:38px}.reserve{height:220px;background:var(--ink)}.project:nth-child(2) .reserve{background:var(--green)}.project h3{margin-top:20px}.project p{font-size:14px;margin-top:8px}.project small{font-size:12px;display:block;margin-top:8px}.contact{background:var(--green);color:var(--white);padding-top:55px;padding-bottom:50px}.contact h2,.contact .eyebrow,.contact a{color:var(--white)}.contact a:hover{color:var(--paper)}.contact p{max-width:620px;margin-top:22px}.contact .brand{font-size:24px;margin-top:45px}.contact-email{display:inline-block;font-size:clamp(18px,2.6vw,28px);margin-top:25px;overflow-wrap:anywhere}.footer{background:var(--green);color:var(--white);font-size:12px;padding-top:25px;padding-bottom:28px;border-top:1px solid var(--line)}
+/* Une seule famille d'effet. Les états masqués n'existent qu'après initialisation 
+/* Animations discrètes : aucune dépendance, aucun effet lié à la position du scroll. */
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduced.matches || !('IntersectionObserver' in window)) return;
+  const pending = new Set();
+  let observer;
+  function show(node) {
+    node.classList.add('is-visible');
+    observer?.unobserve(node); // Une seule apparition, jamais de retour à l'état masqué.
+    pending.delete(node);
+    const clean = () => {node.style.removeProperty('will-change'); node.removeEventListener('transitionend',clean);};
+    node.addEventListener('transitionend',clean);
+    setTimeout(clean,850); // Nettoyage garanti, y compris si la transition est interrompue.
+  }
+  function prepare(node, delay=0) {
+    node.style.setProperty('--delay',delay+'ms');
+    node.style.willChange='transform, opacity';
+    node.classList.add('reveal-ready');pending.add(node);
+  }
+  try {
+    observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) show(entry.target);
+    },{rootMargin:'0px 0px -20% 0px',threshold:0});
+    document.querySelectorAll('[data-section]').forEach(section => {
+      // Pour éviter une double translation parent/enfant, la section révèle ses blocs directs.
+      const blocks=[...section.querySelectorAll('[data-reveal]')];
+      const trigger=section;
+      const sectionObserver = new IntersectionObserver(entries=>{
+        if (!entries.some(e=>e.isIntersecting)) return;
+        blocks.forEach(show);sectionObserver.disconnect();
+      },{rootMargin:'0px 0px -20% 0px',threshold:0});
+      blocks.forEach(node=>prepare(node,Math.min(Number(node.dataset.stagger)||0,3)*60));
+      sectionObserver.observe(trigger);
+      reduced.addEventListener('change',e=>{if(e.matches)sectionObserver.disconnect();},{once:true});
+    });
+    const intro=[...document.querySelectorAll('[data-intro]')];
+    intro.forEach((node,i)=>prepare(node,Math.min(i,1)*150));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>intro.forEach(show)));
+    // Une navigation au clavier ne doit jamais cibler un contenu invisible.
+    document.addEventListener('focusin',e=>{for(const node of pending)if(node.contains(e.target))show(node);});
+    reduced.addEventListener('change',e=>{if(e.matches){observer.disconnect();[...pending].forEach(show);}});
+  } catch (_) { document.querySelectorAll('.reveal-ready').forEach(node=>{node.classList.remove('reveal-ready');node.style.removeProperty('will-change');}); }
+})();
+. */
+.reveal-ready{opacity:0;transform:translateY(16px);transition:opacity 500ms ease-out,transform 500ms ease-out;transition-delay:var(--delay,0ms)}.reveal-ready.is-visible{opacity:1;transform:translateY(0)}
+@media(min-width:768px){.header{flex-wrap:nowrap}.header nav{margin-left:auto}.language{margin-left:0}.hero{padding-top:90px;padding-bottom:85px}.section{padding-top:75px;padding-bottom:75px}.columns{grid-template-columns:repeat(3,1fr)}.facts{grid-template-columns:repeat(3,1fr)}.projects{grid-template-columns:1fr 1fr}.contact{padding-top:75px;padding-bottom:65px}.reserve{height:270px}}
+@media(max-width:767px){.header nav{order:3;width:100%;gap:20px}.header .brand{font-size:20px}.hero .brand{font-size:24px}.card{padding:26px}.contact .brand{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;will-change:auto!important}.reveal-ready{opacity:1!important;transform:none!important}}
+</style></head><body><a class="skip" href="#main">Aller au contenu</a><header class="header wrap"><a class="brand-link" href="#main" aria-label="TalbotGolf, accueil"><span class="brand"><svg class="brand-symbol" viewBox="-5 8 130 94" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="5"><path d="M0 92H120"/><path d="M4 76Q72 58 116 76"/><path d="M22 58Q76 34 100 58"/><path d="M35 48Q75 25 94 48"/><path d="M46 40Q74 16 88 40"/></g></svg><svg class="brand-word" viewBox="0 0 279 70" role="img" aria-label="TalbotGolf"><text x="0" y="56" font-family="Archivo, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="-1.4" fill="currentColor">Talbot<tspan font-weight="800">Golf</tspan></text></svg></span></a><nav aria-label="Navigation principale"><a href="#approche">Approche</a><a href="#references">Références</a><a href="#contact">Contact</a></nav><a class="language" href="/en/" lang="en">EN</a></header><main id="main">
+<!-- Héros : logo et titre apparaissent avec 150 ms de décalage. -->
+<section class="hero wrap"><div data-intro><span class="brand"><svg class="brand-symbol" viewBox="-5 8 130 94" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="5"><path d="M0 92H120"/><path d="M4 76Q72 58 116 76"/><path d="M22 58Q76 34 100 58"/><path d="M35 48Q75 25 94 48"/><path d="M46 40Q74 16 88 40"/></g></svg><svg class="brand-word" viewBox="0 0 279 70" role="img" aria-label="TalbotGolf"><text x="0" y="56" font-family="Archivo, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="-1.4" fill="currentColor">Talbot<tspan font-weight="800">Golf</tspan></text></svg></span></div><h1 data-intro>Du dessin à<br>l'exploitation.</h1><p class="hero-intro">Conseil, conception et rénovation de parcours de golf. Une vision complète, du premier dessin à la réalité de l'exploitation.</p><a class="button" href="#contact">Parlons de votre projet</a></section>
+<!-- Approche : trois volets, sans animation répétée. -->
+<section class="section wrap" id="approche" data-section><div class="heading" data-reveal><p class="eyebrow">Notre approche</p><h2>Une expertise à chaque étape.</h2><p>Concevoir avec créativité. Réaliser avec rigueur. Garder à chaque décision le souci des coûts, de l'entretien et de l'efficacité opérationnelle.</p></div><div class="columns"><article class="card" data-reveal data-stagger="0"><span class="index">01</span><h3>Conseil</h3><p>Comprendre vos objectifs, analyser les besoins du parcours et définir les priorités. Apporter une lecture pratique des enjeux de gestion et des ressources disponibles.</p></article><article class="card" data-reveal data-stagger="1"><span class="index">02</span><h3>Conception</h3><p>Traduire une intention en plans, dessins de modelage et propositions de rénovation. Relier la qualité du jeu, le caractère du terrain et les besoins de l'entretien.</p></article><article class="card" data-reveal data-stagger="2"><span class="index">03</span><h3>Réalisation</h3><p>Accompagner et superviser les travaux avec assiduité. Coordonner les interventions et suivre la qualité, les coûts et le calendrier convenus.</p></article></div></section>
+<!-- Références : chiffres fixes ; aucun résultat ou rôle non confirmé n'est inventé. -->
+<section class="section wrap" id="references" data-section><div data-reveal><p class="eyebrow">Parcours & références</p><h2>Une expérience ancrée dans le terrain.</h2><p class="references-intro">Professionnel du golf depuis l'âge de 17 ans, le fondateur de TalbotGolf réunit plus de 20 ans de direction de golf et une expérience sur trois continents. La majorité des projets réalisés se situe en Afrique, un territoire au cœur de cette expertise.</p></div><div class="facts" data-reveal><div class="fact"><strong>20+</strong><span>années de direction de golf</span></div><div class="fact"><strong>3</strong><span>continents d'expérience</span></div><div class="fact"><strong>100+</strong><span>contacts fournisseurs internationaux</span></div></div><div class="projects"><article class="project" data-reveal data-stagger="0"><div class="reserve" role="img" aria-label="Emplacement réservé aux visuels de l'étude AGA"></div><h3>Étude AGA</h3><p>Plans et maquettes · 2025–2026</p><small>Visuels à intégrer</small></article><article class="project" data-reveal data-stagger="1"><div class="reserve" role="img" aria-label="Emplacement réservé aux photographies de la Palmeraie"></div><h3>Extension de la Palmeraie</h3><p>Photographies de parcours · 2009</p><small>Visuels à intégrer</small></article></div></section>
+<!-- Contact : fond vert et logo blanc, alignement identique à l'en-tête. -->
+<section class="contact" id="contact" data-section><div class="wrap"><div data-reveal><p class="eyebrow">Votre projet</p><h2>Échangeons sur vos objectifs.</h2><p>Création, rénovation ou conseil opérationnel : parlons de votre terrain, de vos priorités et des prochaines étapes.</p><a class="contact-email" href="mailto:talbotgolf@gmail.com">talbotgolf@gmail.com</a></div><div data-reveal data-stagger="1"><a class="brand-link" href="#main" aria-label="TalbotGolf, retour en haut"><span class="brand"><svg class="brand-symbol" viewBox="-5 8 130 94" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="5"><path d="M0 92H120"/><path d="M4 76Q72 58 116 76"/><path d="M22 58Q76 34 100 58"/><path d="M35 48Q75 25 94 48"/><path d="M46 40Q74 16 88 40"/></g></svg><svg class="brand-word" viewBox="0 0 279 70" role="img" aria-label="TalbotGolf"><text x="0" y="56" font-family="Archivo, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="-1.4" fill="currentColor">Talbot<tspan font-weight="800">Golf</tspan></text></svg></span></a></div></div></section></main><footer class="footer"><div class="wrap">TalbotGolf — Du dessin à l'exploitation</div></footer><script>
+/* Animations discrètes : aucune dépendance, aucun effet lié à la position du scroll. */
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduced.matches || !('IntersectionObserver' in window)) return;
+  const pending = new Set();
+  let observer;
+  function show(node) {
+    node.classList.add('is-visible');
+    observer?.unobserve(node); // Une seule apparition, jamais de retour à l'état masqué.
+    pending.delete(node);
+    const clean = () => {node.style.removeProperty('will-change'); node.removeEventListener('transitionend',clean);};
+    node.addEventListener('transitionend',clean);
+    setTimeout(clean,850); // Nettoyage garanti, y compris si la transition est interrompue.
+  }
+  function prepare(node, delay=0) {
+    node.style.setProperty('--delay',delay+'ms');
+    node.style.willChange='transform, opacity';
+    node.classList.add('reveal-ready');pending.add(node);
+  }
+  try {
+    observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) show(entry.target);
+    },{rootMargin:'0px 0px -20% 0px',threshold:0});
+    document.querySelectorAll('[data-section]').forEach(section => {
+      // Pour éviter une double translation parent/enfant, la section révèle ses blocs directs.
+      const blocks=[...section.querySelectorAll('[data-reveal]')];
+      const trigger=section;
+      const sectionObserver = new IntersectionObserver(entries=>{
+        if (!entries.some(e=>e.isIntersecting)) return;
+        blocks.forEach(show);sectionObserver.disconnect();
+      },{rootMargin:'0px 0px -20% 0px',threshold:0});
+      blocks.forEach(node=>prepare(node,Math.min(Number(node.dataset.stagger)||0,3)*60));
+      sectionObserver.observe(trigger);
+      reduced.addEventListener('change',e=>{if(e.matches)sectionObserver.disconnect();},{once:true});
+    });
+    const intro=[...document.querySelectorAll('[data-intro]')];
+    intro.forEach((node,i)=>prepare(node,Math.min(i,1)*150));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>intro.forEach(show)));
+    // Une navigation au clavier ne doit jamais cibler un contenu invisible.
+    document.addEventListener('focusin',e=>{for(const node of pending)if(node.contains(e.target))show(node);});
+    reduced.addEventListener('change',e=>{if(e.matches){observer.disconnect();[...pending].forEach(show);}});
+  } catch (_) { document.querySelectorAll('.reveal-ready').forEach(node=>{node.classList.remove('reveal-ready');node.style.removeProperty('will-change');}); }
+})();
+</script></body></html>
