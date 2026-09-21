@@ -1,0 +1,43 @@
+TalbotGolf — éléments d'identité
+=================================
+
+COULEURS
+  Vert profond   HEX #0A2E21   RVB 10 46 33   CMJN 88 47 76 56   Pantone 350 C (proche)
+  Anthracite     HEX #201E1D   RVB 32 30 29   CMJN 0 6 9 87
+  Blanc          HEX #FFFFFF
+
+TYPOGRAPHIE
+  Archivo — Omnibus-Type, licence SIL Open Font License (gratuite, usage commercial autorisé)
+  https://fonts.google.com/specimen/Archivo
+  Logo       : « Talbot » SemiBold 600 + « Golf » ExtraBold 800, interlettrage -2,5 %
+  Signature  : Regular 400, capitales, interlettrage +14 %
+  Site web   : titres ExtraBold 800, textes Regular 400
+
+FICHIERS
+  talbotgolf-logo-horizontal-[vert|anthracite|blanc].svg / .png
+      Logo principal. En-tête de site, papeterie, signature de courriel.
+  talbotgolf-logo-compact-[vert|anthracite|blanc].svg / .png
+      Symbole au-dessus du nom. Formats étroits et carrés.
+  talbotgolf-symbole-[vert|anthracite|blanc].svg / .png
+      Symbole seul. Tampon de plan, application, motif.
+  talbotgolf-logo-signature-fr-vert.svg / .png     logo + « Du dessin à l'exploitation »
+  talbotgolf-logo-signature-en-vert.svg / .png     logo + « From design to operation »
+  talbotgolf-favicon.svg + favicon-512/180/64/32.png
+      Carré vert, symbole blanc. Favicon, avatar réseaux sociaux (180 px = Apple touch icon).
+
+  Tous les PNG sont à fond transparent (sauf les favicons, fond vert plein).
+  Les SVG embarquent la police : le rendu est identique sur tous les navigateurs,
+  sans installer Archivo.
+
+RÈGLES
+  - Le symbole et le nom s'alignent sur un même axe : le bas de la ligne de sol du relief
+    se pose sur la ligne de base du nom. Ne pas les désolidariser, ne pas changer l'écart.
+  - Zone de protection : une marge libre égale à deux fois l'épaisseur du trait du symbole.
+  - Taille minimale : 28 mm de large à l'impression, 110 px à l'écran.
+  - La signature est un bloc autonome : elle se place sous le logo, jamais à l'intérieur.
+  - Pas de dégradé, pas d'ombre, pas de contour, pas de rotation, pas de déformation.
+  - Sur photo ou fond foncé : version blanche uniquement.
+
+IMPRIMEUR
+  Pour une livraison à un imprimeur travaillant sous Illustrator, demandez la version
+  avec les textes vectorisés (outlines) : le fichier ne dépendra plus d'aucune police.
