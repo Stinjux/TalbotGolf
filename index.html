@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TalbotGolf — Conseil, conception et rénovation de parcours de golf</title>
+<meta name="description" content="Stéphane Talbot dessine, modèle et accompagne des parcours de golf, du premier relevé de terrain au premier tour de jeu. Du dessin à l'exploitation.">
+<meta name="author" content="Stéphane Talbot — TalbotGolf">
+<meta name="theme-color" content="#0A2E21">
+
+<!-- Open Graph / partage social -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="TalbotGolf">
+<meta property="og:title" content="TalbotGolf — Du dessin à l'exploitation">
+<meta property="og:description" content="Conseil, conception et rénovation de parcours de golf. Stéphane Talbot, du premier relevé de terrain au premier tour de jeu.">
+<meta property="og:image" content="public/images/agadir-trou14-ocean-1600.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="987">
+<meta property="og:image:alt" content="Green en bord d'océan sur le futur golf d'Agadir, en lumière de fin de journée.">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicons issus de la charte -->
+<link rel="icon" href="public/logos/talbotgolf-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="public/logos/talbotgolf-favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="public/logos/talbotgolf-favicon-180.png">
+
+<!-- Typographies : Newsreader (titres, légendes italiques) + Archivo (texte, interface, logo) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Bascule « JS actif » posée avant le rendu : sans elle, tout le contenu reste visible et statique. -->
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+</head>
+
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<!-- ============================================================ 1. EN-TÊTE ============================================================ -->
+<header class="entete" id="entete">
+  <div class="entete__barre">
+    <a class="entete__logo" href="#" aria-label="TalbotGolf — accueil">
+      <img class="entete__logo-blanc" src="public/logos/talbotgolf-logo-horizontal-blanc.svg" alt="TalbotGolf" width="512" height="97">
+      <img class="entete__logo-vert"  src="public/logos/talbotgolf-logo-horizontal-vert.svg"  alt="" aria-hidden="true" width="512" height="97">
+    </a>
+
+    <button class="entete__bouton" type="button" aria-expanded="false" aria-controls="nav-principale">
+      <span class="entete__bouton-texte">Menu</span>
+      <span class="entete__bouton-trait" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="nav-principale" aria-label="Navigation principale">
+      <ul class="nav__liste">
+        <li><a class="lien-trace" href="#metier">Le métier</a></li>
+        <li><a class="lien-trace" href="#realisations">Réalisations</a></li>
+        <li><a class="lien-trace" href="#portrait">Stéphane Talbot</a></li>
+        <li><a class="lien-trace" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ============================================================ 2. HÉROS ============================================================ -->
+<section class="heros">
+  <div class="heros__media">
+    <!-- Image de couverture : chargement immédiat et prioritaire (c'est le plus grand élément affiché à l'ouverture). -->
+    <img src="public/images/agadir-trou14-ocean-1600.jpg"
+         srcset="public/images/agadir-trou14-ocean-900.jpg 900w,
+                 public/images/agadir-trou14-ocean-1600.jpg 1600w,
+                 public/images/agadir-trou14-ocean-2400.jpg 2400w"
+         sizes="100vw" width="2400" height="1480" fetchpriority="high" decoding="async"
+         alt="Green du trou 14 du futur golf d'Agadir, bordé de bunkers et de palmiers, face à la plage et à l'océan Atlantique en fin de journée.">
+  </div>
+
+  <div class="heros__voile" aria-hidden="true"></div>
+
+  <div class="heros__contenu">
+    <p class="surtitre surtitre--clair reveal">Conseil, conception et rénovation de parcours de golf</p>
+    <h1 class="heros__titre titre-masque">
+      <span class="ligne"><span class="ligne__i">Du dessin</span></span>
+      <span class="ligne"><span class="ligne__i">à l'exploitation</span></span>
+    </h1>
+    <p class="heros__accroche reveal">Stéphane Talbot dessine, modèle et accompagne des parcours de golf. Du premier relevé de terrain au premier tour de jeu.</p>
+    <p class="reveal"><a class="bouton bouton--clair" href="#contact">Parler d'un projet</a></p>
+  </div>
+
+  <p class="heros__legende reveal">Golf d'Agadir — trou 14, vue d'étude, janvier 2026</p>
+</section>
+
+<!-- ============================================================ 3. LE MÉTIER ============================================================ -->
+<section class="metier section section--creme" id="metier">
+  <div class="grille">
+
+    <header class="metier__intro">
+      <p class="surtitre reveal">Le métier</p>
+      <h2 class="titre-masque titre-h2">
+        <span class="ligne"><span class="ligne__i">Un parcours</span></span>
+        <span class="ligne"><span class="ligne__i">ne se dessine pas</span></span>
+        <span class="ligne"><span class="ligne__i">sur un écran.</span></span>
+      </h2>
+      <p class="metier__chapo reveal">Il se marche, se creuse, se plante et se tond. Quatre temps qui ne se séparent jamais tout à fait&nbsp;: le même homme lit le terrain, trace les axes, suit les engins, puis revient voir comment l'herbe a pris.</p>
+    </header>
+
+    <!-- 01 — Conseil : masterplan aérien, la lecture d'ensemble du site -->
+    <article class="temps temps--a">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/agadir-masterplan-1600.jpg"
+             srcset="public/images/agadir-masterplan-900.jpg 900w,
+                     public/images/agadir-masterplan-1600.jpg 1600w,
+                     public/images/agadir-masterplan-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 56vw" width="2400" height="1202" loading="lazy" decoding="async"
+             alt="Vue aérienne d'ensemble du golf d'Agadir : les dix-huit trous numérotés s'insèrent entre les résidences, les plans d'eau et le relief aride."></div>
+        <figcaption class="legende">Le site entier lu d'un seul regard — Agadir</figcaption>
+      </figure>
+      <div class="temps__texte">
+        <p class="temps__numero reveal">01</p>
+        <h3 class="temps__titre reveal">Conseil<span class="temps__tiret" aria-hidden="true"></span><em>Lire le terrain avant de le toucher</em></h3>
+        <p class="reveal">Relevés, ressource en eau, orientation des vents dominants, nature des sols, usages futurs. Un diagnostic qui dit ce que le site peut porter — et ce qu'il refusera toujours. Avant le moindre trait, un avis franc sur la faisabilité et sur le budget.</p>
+      </div>
+    </article>
+
+    <!-- 02 — Conception : le plan annoté, traité en bichromie vert / crème -->
+    <article class="temps temps--b">
+      <div class="temps__texte">
+        <p class="temps__numero reveal">02</p>
+        <h3 class="temps__titre reveal">Conception<span class="temps__tiret" aria-hidden="true"></span><em>Tracer, puis modeler</em></h3>
+        <p class="reveal">Plan masse, enchaînement des dix-huit trous, dessin des greens, des départs et des bunkers, plans de modelage cotés. Chaque axe est arbitré sur le terrain, jalon en main, jamais seulement sur la table à dessin.</p>
+      </div>
+      <figure class="figure figure--bichromie masque">
+        <div class="cadre"><img src="public/images/agadir-plan-trous12-16-1271.jpg"
+             srcset="public/images/agadir-plan-trous12-16-900.jpg 900w,
+                     public/images/agadir-plan-trous12-16-1271.jpg 1271w"
+             sizes="(max-width: 900px) 100vw, 36vw" width="1271" height="784" loading="lazy" decoding="async"
+             alt="Plan d'étude des trous 12 à 16 du golf d'Agadir : les fairways et les greens sont détourés et numérotés sur la photographie aérienne du site."></div>
+        <figcaption class="legende">Plan d'étude des trous 12 à 16 — décembre 2025</figcaption>
+      </figure>
+    </article>
+
+    <!-- 03 — Réalisation : le chantier livré, fairways fraîchement tondus -->
+    <article class="temps temps--c">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/palmeraie-fairways-1600.jpg"
+             srcset="public/images/palmeraie-fairways-900.jpg 900w,
+                     public/images/palmeraie-fairways-1600.jpg 1600w,
+                     public/images/palmeraie-fairways-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 62vw" width="2400" height="1264" loading="lazy" decoding="async"
+             alt="Fairways fraîchement tondus en bandes alternées à l'extension de la Palmeraie, avec bunkers de sable clair, plans d'eau et lit de l'oued en arrière-plan."></div>
+        <figcaption class="legende">Modelés livrés et première tonte — Palmeraie, Marrakech</figcaption>
+      </figure>
+      <div class="temps__texte">
+        <p class="temps__numero reveal">03</p>
+        <h3 class="temps__titre reveal">Réalisation<span class="temps__tiret" aria-hidden="true"></span><em>Suivre le chantier, jour après jour</em></h3>
+        <p class="reveal">Implantation, terrassement, drainage, arrosage, engazonnement. Une présence sur le site pendant les travaux&nbsp;: les courbes se règlent à la pelle, au fil des essais, devant l'engin — pas dans un bureau à trois cents kilomètres.</p>
+      </div>
+    </article>
+
+    <!-- 04 — Exploitation : le parcours en service, deux joueurs sur le green -->
+    <article class="temps temps--d">
+      <div class="temps__texte">
+        <p class="temps__numero reveal">04</p>
+        <h3 class="temps__titre reveal">Exploitation<span class="temps__tiret" aria-hidden="true"></span><em>Rendre le parcours tenable</em></h3>
+        <p class="reveal">Un beau parcours qui coûte trop cher à entretenir est un parcours raté. Choix des gazons, consommation d'eau, plan d'entretien, formation des équipes, accompagnement des premières saisons jusqu'à ce que le terrain tienne tout seul.</p>
+      </div>
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/agadir-green14-jeu-1600.jpg"
+             srcset="public/images/agadir-green14-jeu-900.jpg 900w,
+                     public/images/agadir-green14-jeu-1600.jpg 1600w,
+                     public/images/agadir-green14-jeu-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 48vw" width="2400" height="1433" loading="lazy" decoding="async"
+             alt="Deux joueurs sur le green du trou 14 à Agadir, le parcours en service, la côte rocheuse et l'océan sur la droite."></div>
+        <figcaption class="legende">Le parcours en jeu, depuis le green du 14</figcaption>
+      </figure>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================ 4. RÉALISATIONS ============================================================
+     POUR AJOUTER UNE RÉALISATION : dupliquer un bloc <article class="realisation"> ci-dessous.
+       · alterner la classe « realisation--inverse » d'un projet à l'autre (texte à droite, puis à gauche) ;
+       · renuméroter l'attribut data-index ;
+       · le bandeau pleine largeur <figure class="bande"> est facultatif, à réserver aux images panoramiques ;
+       · préparer les images en 900 / 1600 / 2400 px de large et renseigner width, height, srcset et alt.
+     ============================================================ -->
+<section class="realisations section section--sable" id="realisations">
+
+  <div class="grille realisations__intro">
+    <p class="surtitre reveal">Réalisations</p>
+    <h2 class="titre-masque titre-h2">
+      <span class="ligne"><span class="ligne__i">Deux terrains,</span></span>
+      <span class="ligne"><span class="ligne__i">deux manières de faire.</span></span>
+    </h2>
+  </div>
+
+  <!-- ---------- Réalisation 01 : Agadir ---------- -->
+  <article class="realisation" data-index="01">
+    <figure class="figure masque parallaxe realisation__image">
+      <div class="cadre"><img src="public/images/agadir-trous12-16-littoral-1600.jpg"
+           srcset="public/images/agadir-trous12-16-littoral-900.jpg 900w,
+                   public/images/agadir-trous12-16-littoral-1600.jpg 1600w,
+                   public/images/agadir-trous12-16-littoral-2400.jpg 2400w"
+           sizes="(max-width: 900px) 100vw, 64vw" width="2400" height="1015" loading="lazy" decoding="async"
+           alt="Les trous 12 à 16 du golf d'Agadir déroulés le long de la côte atlantique au coucher du soleil, entre la falaise, la plage et les palmiers."></div>
+      <figcaption class="legende">Les trous 12 à 16 suivent la falaise — vue d'étude, janvier 2026</figcaption>
+    </figure>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">01</p>
+      <h3 class="realisation__titre reveal">Golf d'Agadir</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>Agadir, Maroc</dd></div>
+        <div><dt>Année</dt><dd>2025 — 2026</dd></div>
+        <div><dt>Intervention</dt><dd>Conception d'un parcours de 18 trous</dd></div>
+      </dl>
+      <p class="reveal">Un parcours dessiné entre la route et l'océan, sur un terrain sec et ouvert au vent. Le tracé remonte le relief sur les neuf premiers trous, puis redescend chercher la falaise&nbsp;: les trous 12 à 16 se jouent face à la mer, greens posés au plus près du bord sans jamais toucher au cordon dunaire. Modelés dessinés pour limiter les surfaces arrosées et tenir la consommation d'eau au plus juste.</p>
+    </div>
+  </article>
+
+  <!-- ---------- Réalisation 02 : Palmeraie (texte à gauche) ---------- -->
+  <article class="realisation realisation--inverse" data-index="02">
+    <figure class="figure masque parallaxe realisation__image">
+      <div class="cadre"><img src="public/images/palmeraie-ensemble-1600.jpg"
+           srcset="public/images/palmeraie-ensemble-900.jpg 900w,
+                   public/images/palmeraie-ensemble-1600.jpg 1600w,
+                   public/images/palmeraie-ensemble-2400.jpg 2400w"
+           sizes="(max-width: 900px) 100vw, 64vw" width="2400" height="1264" loading="lazy" decoding="async"
+           alt="Vue aérienne de l'extension du parcours de la Palmeraie à Marrakech : fairways verts, plan d'eau central, bunkers en forme libre et palmeraie en arrière-plan."></div>
+        <figcaption class="legende">Le plan d'eau du nouveau tracé — Palmeraie, Marrakech</figcaption>
+    </figure>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">02</p>
+      <h3 class="realisation__titre reveal">Extension de la Palmeraie</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
+        <div><dt>Année</dt><dd>2009</dd></div>
+        <div><dt>Intervention</dt><dd>Extension et remodelage du parcours existant</dd></div>
+      </dl>
+      <p class="reveal">Neuf trous ajoutés le long de l'oued, greffés sur un parcours en service qui n'a jamais fermé. Le lit de la rivière sert de limite naturelle et de réserve d'eau&nbsp;; les nouveaux modelés reprennent la ligne basse de la palmeraie pour que l'extension ne se voie pas. Bunkers en forme libre, sable clair, plantations de palmiers prélevés sur place.</p>
+    </div>
+  </article>
+
+  <!-- Bandeau panoramique pleine largeur, rattaché à la réalisation 02 -->
+  <figure class="bande masque parallaxe">
+    <div class="cadre"><img src="public/images/palmeraie-panoramique-1600.jpg"
+         srcset="public/images/palmeraie-panoramique-900.jpg 900w,
+                 public/images/palmeraie-panoramique-1600.jpg 1600w,
+                 public/images/palmeraie-panoramique-2400.jpg 2400w"
+         sizes="100vw" width="2400" height="912" loading="lazy" decoding="async"
+         alt="Panoramique de l'extension de la Palmeraie : la succession des fairways, des plans d'eau et de l'oued, avec la ville de Marrakech au loin."></div>
+    <figcaption class="legende legende--bande">L'extension vue depuis l'amont de l'oued — Marrakech, 2009</figcaption>
+  </figure>
+
+</section>
+
+<!-- ============================================================ 5. PORTRAIT ============================================================ -->
+<section class="portrait section section--creme" id="portrait">
+  <div class="grille">
+
+    <!-- EMPLACEMENT PORTRAIT — remplacer tout ce <div> par :
+         <figure class="figure masque portrait__figure">
+           <div class="cadre"><img src="public/images/stephane-talbot-1600.jpg" srcset="…900w, …1600w" sizes="(max-width: 900px) 100vw, 34vw"
+                width="…" height="…" loading="lazy" decoding="async" alt="Portrait de Stéphane Talbot sur un chantier."></div>
+           <figcaption class="legende">Stéphane Talbot, sur le chantier d'Agadir</figcaption>
+         </figure> -->
+    <div class="portrait__attente reveal" role="img" aria-label="Emplacement réservé au portrait de Stéphane Talbot">
+      <svg class="portrait__motif" viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M10 196 C 78 162, 132 150, 176 152 C 232 155, 276 172, 310 196"/>
+          <path d="M34 168 C 92 138, 140 128, 180 131 C 226 135, 262 150, 292 168"/>
+          <path d="M62 140 C 108 116, 148 108, 182 111 C 218 114, 246 126, 270 140"/>
+          <path d="M92 112 C 126 94, 156 88, 182 91 C 208 94, 228 102, 246 112"/>
+          <path d="M10 214 L 310 214"/>
+        </g>
+      </svg>
+      <p class="portrait__attente-texte">Emplacement réservé<br>au portrait</p>
+    </div>
+
+    <div class="portrait__texte">
+      <p class="surtitre reveal">Le praticien</p>
+      <h2 class="titre-masque titre-h2">
+        <span class="ligne"><span class="ligne__i">Stéphane Talbot</span></span>
+      </h2>
+
+      <blockquote class="citation reveal">
+        <p>Je ne rends jamais un plan que je n'ai pas marché. Le terrain a toujours quelque chose à dire que le papier ignore.</p>
+      </blockquote>
+
+      <div class="portrait__bio">
+        <p class="reveal">Formé au dessin et à la conduite de travaux, Stéphane Talbot est venu au golf par le terrain&nbsp;: d'abord les engins et le modelage, ensuite le trait. Cette route-là, prise dans ce sens, a laissé une habitude qui ne le quitte plus — dessiner en sachant exactement ce que la pelle saura faire.</p>
+        <p class="reveal">Depuis, il conduit ses projets de bout en bout, du premier relevé jusqu'aux premières saisons d'exploitation, en France comme au Maroc. Il travaille seul sur la conception et s'entoure, pour le chantier, des équipes locales qu'il forme à mesure.</p>
+        <p class="reveal"><a class="lien-trace lien-trace--fort" href="#contact">Prendre contact</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ 6. CHIFFRES CLÉS ============================================================ -->
+<section class="chiffres section section--vert" aria-labelledby="chiffres-titre">
+  <svg class="chiffres__motif" viewBox="0 0 1200 420" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMax slice">
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M-40 388 C 220 300, 470 262, 660 272 C 880 284, 1060 336, 1240 388"/>
+      <path d="M20 340 C 250 262, 470 228, 646 238 C 846 250, 1010 296, 1180 340"/>
+      <path d="M96 292 C 292 224, 472 196, 632 205 C 812 216, 956 256, 1104 292"/>
+      <path d="M180 244 C 340 190, 480 166, 618 174 C 772 183, 894 216, 1020 244"/>
+      <path d="M268 196 C 392 156, 494 138, 606 145 C 730 152, 830 176, 932 196"/>
+      <path d="M-40 414 L 1240 414"/>
+    </g>
+  </svg>
+
+  <div class="grille">
+    <h2 class="chiffres__titre" id="chiffres-titre">En quelques chiffres</h2>
+    <ul class="chiffres__liste">
+      <li class="chiffre reveal">
+        <span class="chiffre__valeur" data-compteur="35">35</span>
+        <span class="chiffre__legende">années passées sur le terrain</span>
+      </li>
+      <li class="chiffre reveal">
+        <span class="chiffre__valeur" data-compteur="18">18</span>
+        <span class="chiffre__legende">parcours dessinés ou rénovés</span>
+      </li>
+      <li class="chiffre reveal">
+        <span class="chiffre__valeur" data-compteur="620">620</span>
+        <span class="chiffre__legende">hectares modelés</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ 7. CONTACT ============================================================ -->
+<section class="contact section section--creme" id="contact">
+  <div class="grille">
+
+    <header class="contact__intro">
+      <p class="surtitre reveal">Contact</p>
+      <h2 class="titre-masque titre-h2">
+        <span class="ligne"><span class="ligne__i">Un terrain, une idée,</span></span>
+        <span class="ligne"><span class="ligne__i">un parcours à reprendre&nbsp;?</span></span>
+      </h2>
+      <p class="reveal contact__chapo">Décrivez le site et l'intention en quelques lignes. Vous aurez une réponse, et un avis franc sur la faisabilité.</p>
+    </header>
+
+    <!-- FORMULAIRE — à relier à un service d'envoi (Formspree, Netlify Forms, script PHP…).
+         Sans JavaScript et sans « action », le bouton ne part nulle part : l'adresse et le téléphone
+         affichés à droite restent la voie de secours. Avec JavaScript, main.js compose un courriel prérempli. -->
+    <form class="formulaire reveal" id="formulaire" novalidate>
+      <div class="champ">
+        <label for="f-nom">Nom</label>
+        <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+      </div>
+      <div class="champ">
+        <label for="f-email">Courriel</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="champ">
+        <label for="f-projet">Votre projet</label>
+        <textarea id="f-projet" name="projet" rows="5" required></textarea>
+      </div>
+      <button class="bouton" type="submit">Envoyer</button>
+      <p class="formulaire__retour" id="formulaire-retour" role="status" aria-live="polite"></p>
+    </form>
+
+    <aside class="coordonnees">
+      <dl>
+        <div class="reveal">
+          <dt>Téléphone</dt>
+          <dd><a class="lien-trace" href="tel:+33600000000">+33 6 00 00 00 00</a></dd>
+        </div>
+        <div class="reveal">
+          <dt>Courriel</dt>
+          <dd><a class="lien-trace" href="mailto:contact@talbotgolf.com">contact@talbotgolf.com</a></dd>
+        </div>
+        <div class="reveal">
+          <dt>Zone d'intervention</dt>
+          <dd>France, Maroc et bassin méditerranéen. Déplacement sur site pour toute étude.</dd>
+        </div>
+      </dl>
+    </aside>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ 8. PIED DE PAGE ============================================================ -->
+<footer class="pied section--vert">
+  <div class="grille">
+    <div class="pied__marque">
+      <img class="pied__logo" src="public/logos/talbotgolf-logo-horizontal-blanc.svg" alt="TalbotGolf" width="512" height="97" loading="lazy">
+      <p class="pied__signature">Du dessin à l'exploitation</p>
+    </div>
+    <nav class="pied__nav" aria-label="Navigation de pied de page">
+      <ul>
+        <li><a class="lien-trace" href="#metier">Le métier</a></li>
+        <li><a class="lien-trace" href="#realisations">Réalisations</a></li>
+        <li><a class="lien-trace" href="#portrait">Stéphane Talbot</a></li>
+        <li><a class="lien-trace" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <p class="pied__mentions">
+      © <span id="annee">2026</span> TalbotGolf — Conseil, conception et rénovation de parcours de golf.<br>
+      Photographies et vues d'étude&nbsp;: TalbotGolf. Tous droits réservés.
+    </p>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

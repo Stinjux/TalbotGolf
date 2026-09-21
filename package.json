@@ -1,1 +1,12 @@
-{"name":"talbotgolf","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node server.mjs","check":"node --check server.mjs && node --check content.mjs && node --check public/app.js"},"engines":{"node":">=22"}}
+{
+  "name": "talbotgolf",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site vitrine TalbotGolf — conseil, conception et rénovation de parcours de golf",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs && node --check main.js"
+  },
+  "engines": { "node": ">=22" }
+}
