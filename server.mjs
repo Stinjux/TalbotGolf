@@ -2,7 +2,7 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {resolve,extname} from 'node:path';
 const root=resolve('public');
-const policy="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'sha256-ZsFiJI3XuXoKG+0gdwLoVMFv93W1QQBmIDD3qoDvt2s='; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'sha256-9tG5AWaUvJ54Ve1B25pGUdolSk4qDZFpIkwV3CayDwU='; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
+const policy="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'sha256-1BLCuOQlggXGEJzV6TXuuzIshZbUauC6VtGECY8jDEQ='; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'sha256-9tG5AWaUvJ54Ve1B25pGUdolSk4qDZFpIkwV3CayDwU='; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
 http.createServer(async(req,res)=>{
 res.setHeader('Content-Security-Policy',policy);res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
 try{const url=new URL(req.url,'http://localhost');if(url.pathname==='/health'){res.writeHead(200);return res.end('ok');}if(url.pathname==='/'){res.writeHead(302,{Location:'/fr/'});return res.end();}
