@@ -2,7 +2,7 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {resolve,extname} from 'node:path';
 const root=resolve('public');
-const policy="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'sha256-e9xM2k+KD85g+btGR6B3dPFGiVYrfdF1hDZukzbJfC8='; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'sha256-a9cnwaq/AS/UA8urVSpT8IL4Xh1H1+CRZZuwET34zq0='; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
+const policy="default-src 'self'; img-src 'self'; style-src 'self' https://fonts.googleapis.com 'sha256-fpT9VmUqTCJa2rtbCPQaClMPZyiwkfkN/eiAfyjw64w='; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'sha256-uRd/0qHQ9uUpziHj6sEVmTnI3HPInXa8oQIEudoGcr0='; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
 http.createServer(async(req,res)=>{
 res.setHeader('Content-Security-Policy',policy);res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
 try{const url=new URL(req.url,'http://localhost');if(url.pathname==='/health'){res.writeHead(200);return res.end('ok');}if(url.pathname==='/'){res.writeHead(302,{Location:'/fr/'});return res.end();}
