@@ -190,7 +190,8 @@
        · un seul <figure> dans .realisation__images occupe toute la largeur ; deux <figure> avec
          la classe « realisation__images--duo » se partagent l'espace en 7/4 ;
        · renuméroter data-index et le <p class="realisation__numero"> ;
-       · le bandeau <figure class="bande"> pleine largeur est réservé aux panoramiques ;
+       · le bandeau <figure class="bande"> pleine largeur est réservé aux panoramiques ; il
+         appartient à la réalisation qui le précède, laquelle prend alors « realisation--avec-bande » ;
        · préparer les images en plusieurs largeurs et renseigner width, height, srcset, sizes et alt.
      ============================================================ -->
 <section class="realisations section section--sable" id="realisations">
@@ -267,7 +268,7 @@
   </article>
 
   <!-- ---------- 03 — Extension de la Palmeraie ---------- -->
-  <article class="realisation" data-index="03">
+  <article class="realisation realisation--avec-bande" data-index="03">
     <div class="realisation__images">
       <figure class="figure masque parallaxe">
         <div class="cadre"><img src="public/images/palmeraie-ensemble-1600.jpg"

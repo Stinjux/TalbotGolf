@@ -457,7 +457,7 @@ a{ color: inherit; text-decoration: none; }
 .realisations__charniere{
   display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem);
   max-width: var(--largeur-max);
-  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  margin: clamp(5rem, 11vw, 9rem) auto clamp(3rem, 6vw, 5rem);
   padding-inline: var(--marge-page);
   font-family: var(--serif); font-style: italic; font-weight: 300;
   font-size: clamp(1.25rem, 2.3vw, 1.75rem);
@@ -494,6 +494,10 @@ a{ color: inherit; text-decoration: none; }
   color: var(--laiton-texte);
 }
 .fiche dd{ margin: 0; font-size: var(--t-petit); font-weight: 500; }
+
+/* Une réalisation suivie d'un bandeau : on resserre au-dessus du bandeau pour
+   qu'il lui reste rattaché, et on respire largement en dessous. */
+.realisation--avec-bande{ margin-bottom: clamp(1.25rem, 2.5vw, 2rem); }
 
 /* Bandeau photo à fond perdu. */
 .bande{
