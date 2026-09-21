@@ -79,9 +79,9 @@ puis déclinée en plusieurs largeurs.
 | `agadir-green14-jeu` | AGA-VueDepuisGreen14 | −6,5 % à droite (✦) | métier — 04 Exploitation |
 | `ourika-crepuscule` · `ourika-clubhouse` | Palmourika3 · palmourika1 | — | réalisation 01 |
 | `casablanca-ensemble` · `casablanca-jacaranda` | palmcasa1 · Palmcasa2 | — | réalisation 02 |
-| `palmeraie-green-modeles` · `palmeraie-fairways` | **mazagan1** · ExtensionPalmeraie2009-3 | −21 % en bas sur la seconde | réalisation 03 |
+| `palmeraie-green-fescues` · `palmeraie-fairways` | **mazagan.jpg** · ExtensionPalmeraie2009-3 | −21 % en bas sur la seconde | réalisation 03 |
 | `palmeraie-panoramique` | ExtensionPalmeraie2009-2 | −5 % en bas (logo) | bandeau pleine largeur |
-| `mazagan-links` | mazagan | — | réalisation 04 |
+| `mazagan-green-resort` | mazagan1.jpg | — | réalisation 04 |
 | `royal-marrakech-site` | RGM-PhotoSiteGolfRoyal2025 | — | réalisation 05 |
 | `stephane-portrait` | StephaneTalbot | recadré en 4/5 | portrait |
 | `couverture-golf-1999` | STalbot-MagasineQuebec | marges resserrées | carrière |
@@ -100,9 +100,11 @@ Des fichiers plus grands permettraient des compositions plus généreuses.
 listé comme réalisation) et `palmeraie-ensemble` (doublon de la vue panoramique)
 ont été retirés du dépôt ; les originaux restent dans le dossier source.
 
-**Attention au nom de fichier `mazagan1.jpg`** : malgré son nom, cette photo montre
-l'extension de la Palmeraie, pas Mazagan. Elle est publiée sous le nom
-`palmeraie-green-modeles`.
+**Attention aux noms de fichiers du dossier source.** L'attribution des deux photos
+« mazagan » a été corrigée par Stéphane : `mazagan1.jpg` est bien Mazagan (publiée
+sous `mazagan-green-resort`), tandis que **`mazagan.jpg`, malgré son nom, montre
+l'extension de la Palmeraie** (publiée sous `palmeraie-green-fescues`). À vérifier
+avant tout nouvel usage de ces fichiers.
 
 **Manque toujours** : la photo avec le trophée, annoncée mais absente du dossier.
 
