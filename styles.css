@@ -1,8 +1,8 @@
 /* ==========================================================================
    TalbotGolf — feuille de style
    1. Variables · 2. Base · 3. Utilitaires · 4. En-tête · 5. Héros
-   6. Le métier · 7. Réalisations · 8. Portrait · 9. Chiffres
-   10. Contact · 11. Pied de page · 12. Animations · 13. Responsive
+   6. Le métier · 7. Réalisations · 8. Portrait · 9. Carrière
+   10. Chiffres · 11. Contact · 12. Pied de page · 13. Animations · 14. Responsive
    ========================================================================== */
 
 /* ============================== 1. VARIABLES ============================== */
@@ -413,6 +413,12 @@ a{ color: inherit; text-decoration: none; }
 .realisations__intro{ margin-bottom: clamp(3.5rem, 8vw, 6.5rem); }
 .realisations__intro .surtitre,
 .realisations__intro .titre-h2{ grid-column: 1 / 9; }
+.realisations__chapo{
+  grid-column: 1 / 7;
+  margin-top: 2rem;
+  max-width: 48ch;
+  color: var(--encre-70);
+}
 
 .realisation{
   display: grid; grid-template-columns: repeat(12, 1fr);
@@ -422,10 +428,41 @@ a{ color: inherit; text-decoration: none; }
   align-items: end;
   margin-bottom: clamp(4rem, 9vw, 8rem);
 }
-.realisation__image{ grid-column: 1 / 9; }
+/* Une ou deux photos par réalisation : un seul <figure> prend toute la largeur,
+   deux se partagent l'espace en 7/4 avec un décalage vertical assumé. */
+.realisation__images{
+  grid-column: 1 / 9;
+  display: grid;
+  gap: var(--gouttiere);
+  align-items: start;
+}
+.realisation__images--duo{ grid-template-columns: 7fr 4fr; }
+.realisation__images--duo > .figure:last-child{ margin-top: clamp(2rem, 5vw, 4.5rem); }
+
 .realisation__texte{ grid-column: 9 / 13; padding-bottom: .35rem; }
-.realisation--inverse .realisation__image{ grid-column: 5 / 13; }
+.realisation--inverse .realisation__images{ grid-column: 5 / 13; }
 .realisation--inverse .realisation__texte{ grid-column: 1 / 5; }
+
+/* Photo au format portrait : image étroite, texte plus large à côté. */
+.realisation--vertical{ align-items: center; }
+.realisation--vertical .realisation__images{ grid-column: 1 / 5; }
+.realisation--vertical .realisation__texte{ grid-column: 6 / 11; }
+
+/* Charnière éditoriale entre les parcours dessinés et ceux qui sont exploités. */
+.realisations__charniere{
+  display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem);
+  max-width: var(--largeur-max);
+  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  padding-inline: var(--marge-page);
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(1.25rem, 2.3vw, 1.75rem);
+  line-height: 1.3;
+  color: var(--encre-70);
+}
+.realisations__charniere::before{
+  content: ""; flex: none;
+  width: clamp(40px, 8vw, 120px); height: 1px; background: var(--filet);
+}
 
 .realisation__numero{
   font-family: var(--sans); font-weight: 800;
@@ -467,23 +504,9 @@ a{ color: inherit; text-decoration: none; }
 }
 
 /* ============================== 8. PORTRAIT ============================== */
-.portrait__attente{
+.portrait__figure{
   grid-column: 1 / 5;
   align-self: start;
-  display: flex; flex-direction: column; justify-content: center;
-  aspect-ratio: 4 / 5;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-  background: var(--sable);
-  border: 1px solid var(--filet);
-  border-radius: var(--rayon);
-  color: var(--laiton-texte);
-}
-.portrait__motif{ width: 82%; height: auto; opacity: .55; margin: auto auto 2rem; }
-.portrait__attente-texte{
-  margin: 0;
-  font-family: var(--serif); font-style: italic; font-weight: 300;
-  font-size: var(--t-petit); line-height: 1.35;
-  color: var(--encre-70);
 }
 .portrait__texte{ grid-column: 6 / 13; }
 .citation{
@@ -503,7 +526,70 @@ a{ color: inherit; text-decoration: none; }
 .portrait__bio{ max-width: 58ch; color: var(--encre-70); }
 .portrait__bio p:last-child{ margin-top: 2rem; color: var(--encre); }
 
-/* ============================== 9. CHIFFRES CLÉS ============================== */
+/* ============================== 9. CARRIÈRE ============================== */
+.carriere{ padding-bottom: 0; }          /* le bandeau des circuits ferme la section */
+.carriere__intro{ grid-column: 1 / 7; }
+.carriere__texte{
+  grid-column: 8 / 13;
+  align-self: end;
+  color: var(--encre-70);
+}
+/* Trois archives alignées sur une même ligne de base. */
+.carriere__archives{
+  grid-column: 1 / -1;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  display: grid;
+  grid-template-columns: 4fr 4fr 7fr;
+  gap: var(--gouttiere);
+  align-items: end;
+}
+
+/* Bandeau crème des cinq circuits, en pied de section. */
+.tours{
+  margin-top: clamp(4rem, 9vw, 7rem);
+  padding-block: clamp(2.75rem, 5vw, 4rem);
+  background: var(--creme);
+  border-top: 1px solid var(--filet);
+}
+.tours__titre{
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: .9rem;
+  font-family: var(--sans); font-size: var(--t-label); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .16em;
+  color: var(--laiton-texte);
+  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+}
+.tours__titre::before{
+  content: ""; flex: none;
+  width: clamp(28px, 4vw, 56px); height: 1px; background: currentColor;
+}
+.tours__liste{
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  list-style: none; margin: 0; padding: 0;
+  align-items: center;
+}
+.tour{
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.1rem; text-align: center;
+  padding: .5rem clamp(.5rem, 1.6vw, 1.5rem);
+  border-left: 1px solid var(--filet);
+}
+.tour:first-child{ border-left: 0; }
+.tour__logo{ height: clamp(36px, 3.8vw, 52px); width: auto; }
+.tour__nom{
+  font-size: .75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; line-height: 1.35;
+  color: var(--encre-70);
+}
+.tours__mention{
+  grid-column: 1 / -1;
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0 0;
+  font-size: .75rem;
+  color: var(--encre-70);
+}
+
+/* ============================== 10. CHIFFRES CLÉS ============================== */
 .chiffres{ overflow: hidden; }
 .chiffres__motif{
   position: absolute; left: 50%; bottom: -6%;
@@ -549,7 +635,7 @@ a{ color: inherit; text-decoration: none; }
   color: var(--creme-70);
 }
 
-/* ============================== 10. CONTACT ============================== */
+/* ============================== 11. CONTACT ============================== */
 .contact__intro{ grid-column: 1 / 9; margin-bottom: clamp(3rem, 6vw, 5rem); }
 .contact__chapo{ margin-top: 1.75rem; max-width: 48ch; color: var(--encre-70); }
 
@@ -601,7 +687,7 @@ a{ color: inherit; text-decoration: none; }
 .coordonnees dd{ margin: 0; font-size: var(--t-petit); color: var(--encre-70); }
 .coordonnees dd a{ color: var(--encre); font-weight: 500; }
 
-/* ============================== 11. PIED DE PAGE ============================== */
+/* ============================== 12. PIED DE PAGE ============================== */
 .pied{ padding-block: clamp(3.5rem, 7vw, 5.5rem); }
 .pied .grille{ row-gap: 2.5rem; align-items: start; }
 .pied__marque{ grid-column: 1 / 6; }
@@ -627,7 +713,7 @@ a{ color: inherit; text-decoration: none; }
   color: var(--creme-70);
 }
 
-/* ============================== 12. ANIMATIONS ==============================
+/* ============================== 13. ANIMATIONS ==============================
    Tout ce qui suit n'existe que si JavaScript a posé la classe « js » sur <html>.
    Sans JavaScript, le contenu est affiché immédiatement, sans transition.        */
 
@@ -674,12 +760,13 @@ a{ color: inherit; text-decoration: none; }
   will-change: transform;
 }
 
-/* ============================== 13. RESPONSIVE ============================== */
+/* ============================== 14. RESPONSIVE ============================== */
 @media (max-width: 1080px){
   .metier__intro,
   .contact__intro,
   .realisations__intro .surtitre,
   .realisations__intro .titre-h2{ grid-column: 1 / 11; }
+  .carriere__intro .titre-h2{ grid-column: auto; }
 
   .temps--a .figure{ grid-column: 1 / 9; }
   .temps--a .temps__texte{ grid-column: 9 / 13; }
@@ -689,13 +776,20 @@ a{ color: inherit; text-decoration: none; }
   .temps--d .temps__texte{ grid-column: 1 / 6; }
   .temps--d .figure{ grid-column: 6 / 13; }
 
-  .realisation__image{ grid-column: 1 / 8; }
+  .realisation__images{ grid-column: 1 / 8; }
   .realisation__texte{ grid-column: 8 / 13; }
-  .realisation--inverse .realisation__image{ grid-column: 6 / 13; }
+  .realisation--inverse .realisation__images{ grid-column: 6 / 13; }
   .realisation--inverse .realisation__texte{ grid-column: 1 / 6; }
+  .realisation--vertical .realisation__images{ grid-column: 1 / 6; }
+  .realisation--vertical .realisation__texte{ grid-column: 7 / 13; }
+  .realisations__chapo{ grid-column: 1 / 9; }
 
-  .portrait__attente{ grid-column: 1 / 6; }
+  .portrait__figure{ grid-column: 1 / 6; }
   .portrait__texte{ grid-column: 6 / 13; }
+
+  .carriere__intro{ grid-column: 1 / 8; }
+  .carriere__texte{ grid-column: 1 / 9; margin-top: 2.5rem; }
+  .carriere__archives{ grid-template-columns: 4fr 4fr 6fr; }
 
   .formulaire{ grid-column: 1 / 8; }
   .coordonnees{ grid-column: 8 / 13; }
@@ -748,15 +842,34 @@ a{ color: inherit; text-decoration: none; }
   .temps--b .figure, .temps--d .figure{ order: 1; }
   .temps--b .figure{ max-width: 24rem; }
 
+  .realisations__chapo{ grid-column: 1 / -1; }
+
   .realisation{ row-gap: 1.75rem; }
-  .realisation__image, .realisation__texte,
-  .realisation--inverse .realisation__image,
-  .realisation--inverse .realisation__texte{ grid-column: 1 / -1; }
-  .realisation--inverse .realisation__image{ order: 1; }
+  .realisation__images, .realisation__texte,
+  .realisation--inverse .realisation__images,
+  .realisation--inverse .realisation__texte,
+  .realisation--vertical .realisation__images,
+  .realisation--vertical .realisation__texte{ grid-column: 1 / -1; }
+  .realisation--inverse .realisation__images{ order: 1; }
   .realisation--inverse .realisation__texte{ order: 2; }
+  /* Les deux photos d'un duo se posent l'une sous l'autre, sans décalage. */
+  .realisation__images--duo{ grid-template-columns: 1fr; }
+  .realisation__images--duo > .figure:last-child{ margin-top: 0; }
+  .realisation--vertical .realisation__images{ max-width: 24rem; }
+
+  .realisations__charniere{ font-size: 1.25rem; }
+
+  .carriere__intro, .carriere__texte{ grid-column: 1 / -1; }
+  .carriere__texte{ margin-top: 2rem; }
+  .carriere__archives{ grid-template-columns: 1fr; row-gap: 2.5rem; }
+  .carriere__archives .figure:not(:last-child){ max-width: 20rem; }
+
+  .tours__liste{ grid-template-columns: repeat(2, 1fr); row-gap: 2.25rem; }
+  .tour{ border-left: 0; padding-inline: 0; }
+  .tour:nth-child(even){ border-left: 1px solid var(--filet); }
 
   .portrait .grille{ row-gap: 2.5rem; }
-  .portrait__attente{ grid-column: 1 / -1; max-width: 22rem; aspect-ratio: 5 / 4; }
+  .portrait__figure{ grid-column: 1 / -1; max-width: 20rem; }
   .portrait__texte{ grid-column: 1 / -1; }
 
   .chiffres__liste{ grid-template-columns: 1fr; gap: 2.25rem; }

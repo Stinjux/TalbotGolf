@@ -28,6 +28,12 @@ const politique = [
   "form-action 'self'"
 ].join('; ');
 
+function duree(extension){
+  if (extension === '.html') return 'no-cache';
+  if (extension === '.css' || extension === '.js') return 'public, max-age=300';
+  return 'public, max-age=86400';
+}
+
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css':  'text/css; charset=utf-8',
@@ -67,7 +73,10 @@ http.createServer(async (req, res) => {
     const donnees = await readFile(chemin);
 
     res.setHeader('Content-Type', TYPES[extension] || 'application/octet-stream');
-    res.setHeader('Cache-Control', extension === '.html' ? 'no-cache' : 'public, max-age=31536000, immutable');
+    /* Les noms de fichiers ne portent pas d'empreinte : un cache long figerait
+       une feuille de style corrigée pendant des mois. La page est revalidée à
+       chaque visite, le code quelques minutes, les images une journée. */
+    res.setHeader('Cache-Control', duree(extension));
     res.end(donnees);
 
   } catch {

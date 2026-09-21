@@ -58,6 +58,7 @@
         <li><a class="lien-trace" href="#metier">Le métier</a></li>
         <li><a class="lien-trace" href="#realisations">Réalisations</a></li>
         <li><a class="lien-trace" href="#portrait">Stéphane Talbot</a></li>
+        <li><a class="lien-trace" href="#carriere">Carrière</a></li>
         <li><a class="lien-trace" href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -86,7 +87,7 @@
       <span class="ligne"><span class="ligne__i">Du dessin</span></span>
       <span class="ligne"><span class="ligne__i">à l'exploitation</span></span>
     </h1>
-    <p class="heros__accroche reveal">Stéphane Talbot dessine, modèle et accompagne des parcours de golf. Du premier relevé de terrain au premier tour de jeu.</p>
+    <p class="heros__accroche reveal">Joueur professionnel devenu architecte. Stéphane Talbot dessine, modèle et accompagne des parcours de golf — du premier relevé de terrain au premier tour de jeu.</p>
     <p class="reveal"><a class="bouton bouton--clair" href="#contact">Parler d'un projet</a></p>
   </div>
 
@@ -143,15 +144,15 @@
     </article>
 
     <!-- 03 — Réalisation : le chantier livré, fairways fraîchement tondus -->
+    <!-- 03 — Réalisation : un green en cours de modelage, terre encore nue -->
     <article class="temps temps--c">
       <figure class="figure masque parallaxe">
-        <div class="cadre"><img src="public/images/palmeraie-fairways-1600.jpg"
-             srcset="public/images/palmeraie-fairways-900.jpg 900w,
-                     public/images/palmeraie-fairways-1600.jpg 1600w,
-                     public/images/palmeraie-fairways-2400.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 62vw" width="2400" height="1264" loading="lazy" decoding="async"
-             alt="Fairways fraîchement tondus en bandes alternées à l'extension de la Palmeraie, avec bunkers de sable clair, plans d'eau et lit de l'oued en arrière-plan."></div>
-        <figcaption class="legende">Modelés livrés et première tonte — Palmeraie, Marrakech</figcaption>
+        <div class="cadre"><img src="public/images/ourika-modelage-950.jpg"
+             srcset="public/images/ourika-modelage-700.jpg 700w,
+                     public/images/ourika-modelage-950.jpg 950w"
+             sizes="(max-width: 900px) 100vw, 46vw" width="950" height="534" loading="lazy" decoding="async"
+             alt="Green fraîchement modelé à Palm Ourika : la terre ocre est encore nue autour de la surface engazonnée, les cyprès se découpent sur le ciel de fin de journée."></div>
+        <figcaption class="legende">Un green sorti de terre, avant engazonnement — Palm Ourika</figcaption>
       </figure>
       <div class="temps__texte">
         <p class="temps__numero reveal">03</p>
@@ -184,31 +185,37 @@
 <!-- ============================================================ 4. RÉALISATIONS ============================================================
      POUR AJOUTER UNE RÉALISATION : dupliquer un bloc <article class="realisation"> ci-dessous.
        · alterner la classe « realisation--inverse » d'un projet à l'autre (texte à droite, puis à gauche) ;
-       · renuméroter l'attribut data-index ;
-       · le bandeau pleine largeur <figure class="bande"> est facultatif, à réserver aux images panoramiques ;
-       · préparer les images en 900 / 1600 / 2400 px de large et renseigner width, height, srcset et alt.
+       · « realisation--vertical » pour une photo au format portrait (image étroite, texte à côté) ;
+       · un seul <figure> dans .realisation__images occupe toute la largeur ; deux <figure> avec
+         la classe « realisation__images--duo » se partagent l'espace en 7/4 ;
+       · renuméroter data-index et le <p class="realisation__numero"> ;
+       · le bandeau <figure class="bande"> pleine largeur est réservé aux panoramiques ;
+       · préparer les images en plusieurs largeurs et renseigner width, height, srcset, sizes et alt.
      ============================================================ -->
 <section class="realisations section section--sable" id="realisations">
 
   <div class="grille realisations__intro">
     <p class="surtitre reveal">Réalisations</p>
     <h2 class="titre-masque titre-h2">
-      <span class="ligne"><span class="ligne__i">Deux terrains,</span></span>
-      <span class="ligne"><span class="ligne__i">deux manières de faire.</span></span>
+      <span class="ligne"><span class="ligne__i">Six parcours,</span></span>
+      <span class="ligne"><span class="ligne__i">deux manières d'y être.</span></span>
     </h2>
+    <p class="realisations__chapo reveal">Quatre qu'il a dessinés, remodelés ou étendus. Deux qu'il n'a pas signés, mais dont il conduit la rénovation, la gestion et l'entretien.</p>
   </div>
 
-  <!-- ---------- Réalisation 01 : Agadir ---------- -->
+  <!-- ---------- 01 — Golf d'Agadir ---------- -->
   <article class="realisation" data-index="01">
-    <figure class="figure masque parallaxe realisation__image">
-      <div class="cadre"><img src="public/images/agadir-trous12-16-littoral-1600.jpg"
-           srcset="public/images/agadir-trous12-16-littoral-900.jpg 900w,
-                   public/images/agadir-trous12-16-littoral-1600.jpg 1600w,
-                   public/images/agadir-trous12-16-littoral-2400.jpg 2400w"
-           sizes="(max-width: 900px) 100vw, 64vw" width="2400" height="1015" loading="lazy" decoding="async"
-           alt="Les trous 12 à 16 du golf d'Agadir déroulés le long de la côte atlantique au coucher du soleil, entre la falaise, la plage et les palmiers."></div>
-      <figcaption class="legende">Les trous 12 à 16 suivent la falaise — vue d'étude, janvier 2026</figcaption>
-    </figure>
+    <div class="realisation__images">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/agadir-trous12-16-littoral-1600.jpg"
+             srcset="public/images/agadir-trous12-16-littoral-900.jpg 900w,
+                     public/images/agadir-trous12-16-littoral-1600.jpg 1600w,
+                     public/images/agadir-trous12-16-littoral-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 60vw" width="2400" height="1015" loading="lazy" decoding="async"
+             alt="Les trous 12 à 16 du golf d'Agadir déroulés le long de la côte atlantique au coucher du soleil, entre la falaise, la plage et les palmiers."></div>
+        <figcaption class="legende">Les trous 12 à 16 suivent la falaise — vue d'étude, janvier 2026</figcaption>
+      </figure>
+    </div>
     <div class="realisation__texte">
       <p class="realisation__numero reveal">01</p>
       <h3 class="realisation__titre reveal">Golf d'Agadir</h3>
@@ -221,19 +228,92 @@
     </div>
   </article>
 
-  <!-- ---------- Réalisation 02 : Palmeraie (texte à gauche) ---------- -->
+  <!-- ---------- 02 — Palm Ourika (texte à gauche) ---------- -->
   <article class="realisation realisation--inverse" data-index="02">
-    <figure class="figure masque parallaxe realisation__image">
-      <div class="cadre"><img src="public/images/palmeraie-ensemble-1600.jpg"
-           srcset="public/images/palmeraie-ensemble-900.jpg 900w,
-                   public/images/palmeraie-ensemble-1600.jpg 1600w,
-                   public/images/palmeraie-ensemble-2400.jpg 2400w"
-           sizes="(max-width: 900px) 100vw, 64vw" width="2400" height="1264" loading="lazy" decoding="async"
-           alt="Vue aérienne de l'extension du parcours de la Palmeraie à Marrakech : fairways verts, plan d'eau central, bunkers en forme libre et palmeraie en arrière-plan."></div>
-        <figcaption class="legende">Le plan d'eau du nouveau tracé — Palmeraie, Marrakech</figcaption>
-    </figure>
+    <div class="realisation__images realisation__images--duo">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/ourika-crepuscule-1024.jpg"
+             srcset="public/images/ourika-crepuscule-900.jpg 900w,
+                     public/images/ourika-crepuscule-1024.jpg 1024w"
+             sizes="(max-width: 900px) 100vw, 38vw" width="1024" height="683" loading="lazy" decoding="async"
+             alt="Green de Palm Ourika au crépuscule : drapeau rouge, plan d'eau qui reflète le ciel rose et la chaîne du Haut Atlas à l'horizon."></div>
+        <figcaption class="legende">Le green et sa pièce d'eau, l'Atlas en fond</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/ourika-clubhouse-800.jpg"
+             srcset="public/images/ourika-clubhouse-600.jpg 600w,
+                     public/images/ourika-clubhouse-800.jpg 800w"
+             sizes="(max-width: 900px) 100vw, 21vw" width="800" height="600" loading="lazy" decoding="async"
+             alt="Le clubhouse de Palm Ourika en terre ocre, joueurs et voiturettes sur le fairway, sommets enneigés du Haut Atlas en arrière-plan."></div>
+        <figcaption class="legende">Le clubhouse, sous les sommets enneigés</figcaption>
+      </figure>
+    </div>
     <div class="realisation__texte">
       <p class="realisation__numero reveal">02</p>
+      <h3 class="realisation__titre reveal">Palm Ourika</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
+        <div><dt>Intervention</dt><dd>Conception, réalisation et suivi d'exploitation</dd></div>
+      </dl>
+      <p class="reveal">Un parcours posé au pied du Haut Atlas, dans la vallée de l'Ourika. Le dessin tire parti de la chaîne enneigée&nbsp;: plusieurs greens sont orientés pour qu'elle reste dans l'axe du coup. Modelés larges, surfaces de jeu généreuses, pièces d'eau qui servent autant au jeu qu'à la réserve d'arrosage. Projet mené de bout en bout, du premier relevé aux premières saisons.</p>
+    </div>
+  </article>
+
+  <!-- ---------- 03 — Palm Casablanca ---------- -->
+  <article class="realisation" data-index="03">
+    <div class="realisation__images realisation__images--duo">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/casablanca-ensemble-768.jpg"
+             srcset="public/images/casablanca-ensemble-600.jpg 600w,
+                     public/images/casablanca-ensemble-768.jpg 768w"
+             sizes="(max-width: 900px) 100vw, 38vw" width="768" height="480" loading="lazy" decoding="async"
+             alt="Vue d'ensemble de Palm Casablanca : fairways vallonnés, pièce d'eau bordée de roseaux, arbres de haute tige et ville au loin."></div>
+        <figcaption class="legende">La succession des plans d'eau, qui règle aussi le drainage</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/casablanca-jacaranda-768.jpg"
+             srcset="public/images/casablanca-jacaranda-600.jpg 600w,
+                     public/images/casablanca-jacaranda-768.jpg 768w"
+             sizes="(max-width: 900px) 100vw, 21vw" width="768" height="480" loading="lazy" decoding="async"
+             alt="Jacaranda en fleurs mauves au bord d'un fairway de Palm Casablanca, une voiturette à l'arrêt et un bunker de sable clair."></div>
+        <figcaption class="legende">Les arbres en place ont dicté le tracé</figcaption>
+      </figure>
+    </div>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">03</p>
+      <h3 class="realisation__titre reveal">Palm Casablanca</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>Casablanca, Maroc</dd></div>
+        <div><dt>Intervention</dt><dd>Conception, réalisation et suivi d'exploitation</dd></div>
+      </dl>
+      <p class="reveal">Un parcours de plaine, plus doux, dessiné autour des arbres déjà en place plutôt que sur une table rase. Le tracé s'appuie sur une succession de pièces d'eau reliées entre elles, qui commandent le drainage du site autant qu'elles dessinent le jeu. Là encore, du premier trait jusqu'à l'entretien courant.</p>
+    </div>
+  </article>
+
+  <!-- ---------- 04 — Extension de la Palmeraie (texte à gauche) ---------- -->
+  <article class="realisation realisation--inverse" data-index="04">
+    <div class="realisation__images realisation__images--duo">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/palmeraie-ensemble-1600.jpg"
+             srcset="public/images/palmeraie-ensemble-900.jpg 900w,
+                     public/images/palmeraie-ensemble-1600.jpg 1600w,
+                     public/images/palmeraie-ensemble-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 38vw" width="2400" height="1264" loading="lazy" decoding="async"
+             alt="Vue aérienne de l'extension du parcours de la Palmeraie à Marrakech : fairways verts, plan d'eau central, bunkers en forme libre et palmeraie en arrière-plan."></div>
+        <figcaption class="legende">Le plan d'eau du nouveau tracé — Marrakech</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/palmeraie-fairways-1600.jpg"
+             srcset="public/images/palmeraie-fairways-900.jpg 900w,
+                     public/images/palmeraie-fairways-1600.jpg 1600w,
+                     public/images/palmeraie-fairways-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 21vw" width="2400" height="1264" loading="lazy" decoding="async"
+             alt="Fairways fraîchement tondus en bandes alternées à l'extension de la Palmeraie, bunkers de sable clair et lit de l'oued en arrière-plan."></div>
+        <figcaption class="legende">Première tonte sur les modelés livrés</figcaption>
+      </figure>
+    </div>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">04</p>
       <h3 class="realisation__titre reveal">Extension de la Palmeraie</h3>
       <dl class="fiche reveal">
         <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
@@ -244,16 +324,76 @@
     </div>
   </article>
 
-  <!-- Bandeau panoramique pleine largeur, rattaché à la réalisation 02 -->
+  <!-- Bandeau panoramique pleine largeur -->
   <figure class="bande masque parallaxe">
     <div class="cadre"><img src="public/images/palmeraie-panoramique-1600.jpg"
          srcset="public/images/palmeraie-panoramique-900.jpg 900w,
                  public/images/palmeraie-panoramique-1600.jpg 1600w,
                  public/images/palmeraie-panoramique-2400.jpg 2400w"
          sizes="100vw" width="2400" height="912" loading="lazy" decoding="async"
-         alt="Panoramique de l'extension de la Palmeraie : la succession des fairways, des plans d'eau et de l'oued, avec la ville de Marrakech au loin."></div>
+         alt="Panoramique de l'extension de la Palmeraie : la succession des fairways, des plans d'eau et de l'oued, avec Marrakech au loin."></div>
     <figcaption class="legende legende--bande">L'extension vue depuis l'amont de l'oued — Marrakech, 2009</figcaption>
   </figure>
+
+  <!-- Charnière : on passe des parcours dessinés à ceux qui sont exploités -->
+  <p class="realisations__charniere reveal">Deux parcours qu'il n'a pas dessinés — et qu'il fait tenir.</p>
+
+  <!-- ---------- 05 — Mazagan ---------- -->
+  <article class="realisation" data-index="05">
+    <div class="realisation__images realisation__images--duo">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/mazagan-panoramique-1600.jpg"
+             srcset="public/images/mazagan-panoramique-900.jpg 900w,
+                     public/images/mazagan-panoramique-1600.jpg 1600w,
+                     public/images/mazagan-panoramique-2400.jpg 2400w"
+             sizes="(max-width: 900px) 100vw, 38vw" width="2400" height="1315" loading="lazy" decoding="async"
+             alt="Green de Mazagan en contrebas, modelés de fairway au premier plan et bâtiments du resort alignés sur l'horizon, face à l'Atlantique."></div>
+        <figcaption class="legende">Le parcours et le resort, face à l'Atlantique</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/mazagan-links-1024.jpg"
+             srcset="public/images/mazagan-links-900.jpg 900w,
+                     public/images/mazagan-links-1024.jpg 1024w"
+             sizes="(max-width: 900px) 100vw, 21vw" width="1024" height="683" loading="lazy" decoding="async"
+             alt="Trou de Mazagan bordé de fescues hautes et de sable nu, green posé au creux du relief dans une lumière rasante."></div>
+        <figcaption class="legende">Fescues et sable nu&nbsp;: un entretien de links</figcaption>
+      </figure>
+    </div>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">05</p>
+      <h3 class="realisation__titre reveal">Mazagan</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>El Jadida, Maroc</dd></div>
+        <div><dt>Intervention</dt><dd>Supervision des travaux, gestion et entretien</dd></div>
+      </dl>
+      <p class="reveal">Un parcours de bord d'Atlantique, exposé au vent et au sel. Stéphane Talbot n'en a pas signé le dessin&nbsp;: il en a supervisé les travaux, puis pris en charge la gestion et l'entretien. Tenir un parcours de ce type est un métier à part entière — arrosage, fescues, hauteurs de coupe, tout se règle au plus juste, et se juge à la saison suivante.</p>
+    </div>
+  </article>
+
+  <!-- ---------- 06 — Royal Golf Marrakech (photo verticale) ---------- -->
+  <article class="realisation realisation--vertical" data-index="06">
+    <div class="realisation__images">
+      <figure class="figure masque parallaxe">
+        <div class="cadre"><img src="public/images/royal-marrakech-site-1400.jpg"
+             srcset="public/images/royal-marrakech-site-900.jpg 900w,
+                     public/images/royal-marrakech-site-1400.jpg 1400w,
+                     public/images/royal-marrakech-site-2088.jpg 2088w"
+             sizes="(max-width: 900px) 100vw, 29vw" width="2088" height="2830" loading="lazy" decoding="async"
+             alt="Vue aérienne verticale du Royal Golf Marrakech : les fairways s'étirent entre les oliveraies et les chemins de terre, jusqu'à l'horizon."></div>
+        <figcaption class="legende">Le site vu du ciel, entre les oliveraies — 2025</figcaption>
+      </figure>
+    </div>
+    <div class="realisation__texte">
+      <p class="realisation__numero reveal">06</p>
+      <h3 class="realisation__titre reveal">Royal Golf Marrakech</h3>
+      <dl class="fiche reveal">
+        <div><dt>Lieu</dt><dd>Marrakech, Maroc</dd></div>
+        <div><dt>Année</dt><dd>En cours</dd></div>
+        <div><dt>Intervention</dt><dd>Gestion, rénovation et entretien</dd></div>
+      </dl>
+      <p class="reveal">Un parcours installé dans les oliviers, au sud de la ville. L'intervention ne touche pas au dessin d'origine&nbsp;: elle porte sur sa remise en état. Rénovation des surfaces de jeu, reprise du réseau d'arrosage, plan d'entretien et conduite des équipes — un travail qui se mesure saison après saison, pas en une livraison.</p>
+    </div>
+  </article>
 
 </section>
 
@@ -261,24 +401,14 @@
 <section class="portrait section section--creme" id="portrait">
   <div class="grille">
 
-    <!-- EMPLACEMENT PORTRAIT — remplacer tout ce <div> par :
-         <figure class="figure masque portrait__figure">
-           <div class="cadre"><img src="public/images/stephane-talbot-1600.jpg" srcset="…900w, …1600w" sizes="(max-width: 900px) 100vw, 34vw"
-                width="…" height="…" loading="lazy" decoding="async" alt="Portrait de Stéphane Talbot sur un chantier."></div>
-           <figcaption class="legende">Stéphane Talbot, sur le chantier d'Agadir</figcaption>
-         </figure> -->
-    <div class="portrait__attente reveal" role="img" aria-label="Emplacement réservé au portrait de Stéphane Talbot">
-      <svg class="portrait__motif" viewBox="0 0 320 240" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M10 196 C 78 162, 132 150, 176 152 C 232 155, 276 172, 310 196"/>
-          <path d="M34 168 C 92 138, 140 128, 180 131 C 226 135, 262 150, 292 168"/>
-          <path d="M62 140 C 108 116, 148 108, 182 111 C 218 114, 246 126, 270 140"/>
-          <path d="M92 112 C 126 94, 156 88, 182 91 C 208 94, 228 102, 246 112"/>
-          <path d="M10 214 L 310 214"/>
-        </g>
-      </svg>
-      <p class="portrait__attente-texte">Emplacement réservé<br>au portrait</p>
-    </div>
+    <figure class="figure masque portrait__figure">
+      <div class="cadre"><img src="public/images/stephane-portrait-1000.jpg"
+           srcset="public/images/stephane-portrait-1000.jpg 1000w,
+                   public/images/stephane-portrait-1600.jpg 1600w"
+           sizes="(max-width: 900px) 100vw, 30vw" width="1600" height="2000" loading="lazy" decoding="async"
+           alt="Portrait de Stéphane Talbot, bras croisés, en veste sombre, devant un green bordé d'un plan d'eau."></div>
+      <figcaption class="legende">Stéphane Talbot</figcaption>
+    </figure>
 
     <div class="portrait__texte">
       <p class="surtitre reveal">Le praticien</p>
@@ -287,12 +417,13 @@
       </h2>
 
       <blockquote class="citation reveal">
-        <p>Je ne rends jamais un plan que je n'ai pas marché. Le terrain a toujours quelque chose à dire que le papier ignore.</p>
+        <p>On ne dessine pas un trou de la même manière quand on l'a joué sous pression.</p>
       </blockquote>
 
       <div class="portrait__bio">
-        <p class="reveal">Formé au dessin et à la conduite de travaux, Stéphane Talbot est venu au golf par le terrain&nbsp;: d'abord les engins et le modelage, ensuite le trait. Cette route-là, prise dans ce sens, a laissé une habitude qui ne le quitte plus — dessiner en sachant exactement ce que la pelle saura faire.</p>
-        <p class="reveal">Depuis, il conduit ses projets de bout en bout, du premier relevé jusqu'aux premières saisons d'exploitation, en France comme au Maroc. Il travaille seul sur la conception et s'entoure, pour le chantier, des équipes locales qu'il forme à mesure.</p>
+        <p class="reveal">Stéphane Talbot a d'abord été joueur professionnel. En avril 1999, le magazine <em>Golf</em> le présentait en couverture comme le premier Québécois à jouer le circuit européen de la PGA. Il a rendu ses cartes sur cinq circuits, du Canada à l'Asie.</p>
+        <p class="reveal">Il dessine aujourd'hui les parcours qu'il a passé des années à jouer. Cette route-là, prise dans ce sens, a laissé une habitude qui ne le quitte plus&nbsp;: penser chaque trou depuis le départ, la balle à la main, avant de le penser depuis le plan.</p>
+        <p class="reveal">Installé au Maroc, il conduit ses projets de bout en bout — du premier relevé jusqu'aux premières saisons d'exploitation — et assure aussi la rénovation, la gestion et l'entretien de parcours qu'il n'a pas dessinés.</p>
         <p class="reveal"><a class="lien-trace lien-trace--fort" href="#contact">Prendre contact</a></p>
       </div>
     </div>
@@ -300,7 +431,83 @@
   </div>
 </section>
 
-<!-- ============================================================ 6. CHIFFRES CLÉS ============================================================ -->
+<!-- ============================================================ 6. CARRIÈRE ============================================================ -->
+<section class="carriere section section--sable" id="carriere">
+  <div class="grille">
+
+    <header class="carriere__intro">
+      <p class="surtitre reveal">Carrière</p>
+      <h2 class="titre-masque titre-h2">
+        <span class="ligne"><span class="ligne__i">Avant de les dessiner,</span></span>
+        <span class="ligne"><span class="ligne__i">il les a joués.</span></span>
+      </h2>
+    </header>
+
+    <div class="carriere__texte">
+      <p class="reveal">Des années de cartes rendues sur quatre continents, à lire des greens jamais vus, sous un vent découvert le matin même. C'est là que se forme l'œil&nbsp;: savoir en arrivant au départ où le trou veut vous emmener — et où il vous punira.</p>
+      <p class="reveal">Cette expérience-là ne se transmet pas dans un plan. Elle se voit dans le dessin&nbsp;: un fairway qui laisse une seconde option au joueur moyen, un green dont la pente rend le birdie possible sans jamais le donner, un bunker placé là où la balle veut vraiment aller.</p>
+    </div>
+
+    <div class="carriere__archives">
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/couverture-golf-1999-900.jpg"
+             srcset="public/images/couverture-golf-1999-900.jpg 900w,
+                     public/images/couverture-golf-1999-1200.jpg 1200w"
+             sizes="(max-width: 900px) 100vw, 23vw" width="1200" height="1646" loading="lazy" decoding="async"
+             alt="Couverture du magazine Golf Montérégie-Estrie d'avril 1999 : Stéphane Talbot en casquette Talvest, titrée « premier Québécois sur le circuit européen de la PGA »."></div>
+        <figcaption class="legende">Magazine <em>Golf</em>, vol.&nbsp;1 n°&nbsp;1 — avril 1999</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/stephane-1999-870.jpg"
+             sizes="(max-width: 900px) 100vw, 23vw" width="870" height="1314" loading="lazy" decoding="async"
+             alt="Stéphane Talbot en tenue de compétition à la fin des années 1990, casquette Talvest et polo de circuit."></div>
+        <figcaption class="legende">En tenue de circuit</figcaption>
+      </figure>
+      <figure class="figure masque">
+        <div class="cadre"><img src="public/images/stephane-canberra-1200.jpg"
+             srcset="public/images/stephane-canberra-900.jpg 900w,
+                     public/images/stephane-canberra-1200.jpg 1200w,
+                     public/images/stephane-canberra-1800.jpg 1800w"
+             sizes="(max-width: 900px) 100vw, 40vw" width="1800" height="1200" loading="lazy" decoding="async"
+             alt="Stéphane Talbot appuyé à une voiturette au Gold Creek Country Club de Canberra, en Australie."></div>
+        <figcaption class="legende">Gold Creek Country Club, Canberra — Australie</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- Bandeau des circuits : logos détourés, hauteur optique normalisée -->
+  <div class="tours">
+    <div class="grille">
+      <h3 class="tours__titre">Cinq circuits professionnels</h3>
+      <ul class="tours__liste">
+        <li class="tour reveal">
+          <img class="tour__logo" src="public/logos/tours/pga-tour.png" alt="" width="170" height="240" loading="lazy" decoding="async">
+          <span class="tour__nom">PGA TOUR</span>
+        </li>
+        <li class="tour reveal">
+          <img class="tour__logo" src="public/logos/tours/dp-world-tour.png" alt="" width="222" height="240" loading="lazy" decoding="async">
+          <span class="tour__nom">DP World Tour</span>
+        </li>
+        <li class="tour reveal">
+          <img class="tour__logo" src="public/logos/tours/asian-tour.png" alt="" width="540" height="240" loading="lazy" decoding="async">
+          <span class="tour__nom">Asian Tour</span>
+        </li>
+        <li class="tour reveal">
+          <img class="tour__logo" src="public/logos/tours/canadian-tour.png" alt="" width="196" height="240" loading="lazy" decoding="async">
+          <span class="tour__nom">Canadian Tour</span>
+        </li>
+        <li class="tour reveal">
+          <img class="tour__logo" src="public/logos/tours/pga-tour-latinoamerica.png" alt="" width="242" height="240" loading="lazy" decoding="async">
+          <span class="tour__nom">PGA TOUR Latinoamérica</span>
+        </li>
+      </ul>
+      <p class="tours__mention">Marques déposées de leurs détenteurs respectifs, reproduites à titre de référence de parcours professionnel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 7. CHIFFRES CLÉS ============================================================ -->
 <section class="chiffres section section--vert" aria-labelledby="chiffres-titre">
   <svg class="chiffres__motif" viewBox="0 0 1200 420" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMax slice">
     <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -332,7 +539,7 @@
   </div>
 </section>
 
-<!-- ============================================================ 7. CONTACT ============================================================ -->
+<!-- ============================================================ 8. CONTACT ============================================================ -->
 <section class="contact section section--creme" id="contact">
   <div class="grille">
 
@@ -387,7 +594,7 @@
 
 </main>
 
-<!-- ============================================================ 8. PIED DE PAGE ============================================================ -->
+<!-- ============================================================ 9. PIED DE PAGE ============================================================ -->
 <footer class="pied section--vert">
   <div class="grille">
     <div class="pied__marque">
@@ -399,6 +606,7 @@
         <li><a class="lien-trace" href="#metier">Le métier</a></li>
         <li><a class="lien-trace" href="#realisations">Réalisations</a></li>
         <li><a class="lien-trace" href="#portrait">Stéphane Talbot</a></li>
+        <li><a class="lien-trace" href="#carriere">Carrière</a></li>
         <li><a class="lien-trace" href="#contact">Contact</a></li>
       </ul>
     </nav>
