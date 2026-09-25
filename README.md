@@ -28,8 +28,8 @@ Tout ce qui suit a été écrit faute d'information et doit être relu ou rempla
 
 ### Dates manquantes — le plus urgent
 Trois réalisations n'affichent **aucune année**, faute de l'avoir : **Palm Ourika**,
-**Palm Casablanca** et **Mazagan**. La page en compte cinq — le Golf d'Agadir n'y
-figure plus, mais ses photos restent dans le héros et dans la section du métier. Le Royal Golf Marrakech porte « En cours ».
+**Palm Casablanca** et **Mazagan**. La page en compte cinq. Le parcours dont
+proviennent les photos du héros et de la section du métier n'y est pas nommé. Le Royal Golf Marrakech porte « En cours ».
 Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 `<div><dt>Année</dt><dd>2014</dd></div>`.
 
@@ -72,11 +72,11 @@ puis déclinée en plusieurs largeurs.
 
 | Fichier livré | Origine | Traitement | Emplacement |
 |---|---|---|---|
-| `agadir-trou14-ocean` | 4AGA-VueRealistiqueTrou14 | −6,5 % à droite (pictogramme ✦) | héros |
-| `agadir-masterplan` | AGA-VueGolf_Janv26 | −6,5 % à droite (✦) | métier — 01 Conseil |
-| `agadir-plan-trous12-16` | AGA-Vue12-16v2 | −6,5 % à droite (✦) | métier — 02 Conception, **bichromie** |
+| `heros-green-ocean` | 4AGA-VueRealistiqueTrou14 | −6,5 % à droite (pictogramme ✦) | héros |
+| `masterplan-aerien` | AGA-VueGolf_Janv26 | −6,5 % à droite (✦) | métier — 01 Conseil |
+| `plan-etude-trous-12-16` | AGA-Vue12-16v2 | −6,5 % à droite (✦) | métier — 02 Conception, **bichromie** |
 | `ourika-modelage` | Palmourika2 | — | métier — 03 Réalisation |
-| `agadir-green14-jeu` | AGA-VueDepuisGreen14 | −6,5 % à droite (✦) | métier — 04 Exploitation |
+| `green-en-jeu` | AGA-VueDepuisGreen14 | −6,5 % à droite (✦) | métier — 04 Exploitation |
 | `ourika-crepuscule` · `ourika-clubhouse` | Palmourika3 · palmourika1 | — | réalisation 01 |
 | `casablanca-ensemble` · `casablanca-jacaranda` | palmcasa1 · Palmcasa2 | — | réalisation 02 |
 | `palmeraie-ensemble` | ExtensionPalmeraie2009 | −21 % en bas (FlyOverGreen) | réalisation 03 |
@@ -88,21 +88,26 @@ puis déclinée en plusieurs largeurs.
 | `stephane-1999` · `stephane-canberra` | Talvest_chest2 · DSC_0040 | — | carrière |
 
 Traitement appliqué en CSS, donc réversible : `saturate(.82) sepia(.05)` —
-désaturation d'environ 18 % et un point de chaleur. Le plan d'étude d'Agadir
-passe en bichromie vert/crème (`.figure--bichromie`).
+désaturation d'environ 18 % et un point de chaleur. Le plan d'étude des trous
+12 à 16 passe en bichromie vert/crème (`.figure--bichromie`).
 
 **Définitions faibles.** Sept photos sont fournies entre 768 et 1024 px de large
 (Palm Ourika, Palm Casablanca, Mazagan links). Elles sont donc placées dans des
 colonnes étroites et ne peuvent pas passer en pleine largeur sans devenir floues.
 Des fichiers plus grands permettraient des compositions plus généreuses.
 
-**Photos non utilisées** : `agadir-trous12-16-littoral` (le Golf d'Agadir n'est plus
-listé comme réalisation) et `ExtensionPalmeraie2009-3` — cette dernière est le même
+**Photos non utilisées** : `AGA-VueGolfTrous12-16` (ce parcours n'est plus listé
+comme réalisation) et `ExtensionPalmeraie2009-3` — cette dernière est le même
 cliché que `ExtensionPalmeraie2009-2`, simplement moins recadré : mêmes bassins,
 mêmes jets d'eau, même horizon. Seule la version panoramique est publiée. Les
 originaux restent dans le dossier source.
 
 **Manque toujours** : la photo avec le trophée, annoncée mais absente du dossier.
+
+**Aucun nom de parcours dans les fichiers du héros et du métier.** Ces quatre
+photos portent des noms purement descriptifs, volontairement : le parcours
+d'origine ne doit être nommé ni dans le code, ni dans les légendes, ni dans les
+textes alternatifs.
 
 ### Ajouter une photo
 Produire deux ou trois largeurs, les déposer dans `public/images/`, puis
