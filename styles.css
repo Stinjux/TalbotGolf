@@ -380,8 +380,8 @@ a{ color: inherit; text-decoration: none; }
 .temps--b .temps__texte{ grid-column: 2 / 7; }
 .temps--b .figure{ grid-column: 8 / 13; }
 
-.temps--c .figure{ grid-column: 1 / 10; margin-top: clamp(1rem, 3vw, 3rem); }
-.temps--c .temps__texte{ grid-column: 10 / 13; }
+.temps--c .figure{ grid-column: 1 / 7; margin-top: clamp(1rem, 3vw, 3rem); }
+.temps--c .temps__texte{ grid-column: 8 / 13; }
 
 .temps--d{ align-items: center; }
 .temps--d .temps__texte{ grid-column: 1 / 5; }
@@ -780,8 +780,8 @@ a{ color: inherit; text-decoration: none; }
   .temps--a .figure{ grid-column: 1 / 9; }
   .temps--a .temps__texte{ grid-column: 9 / 13; }
   .temps--b .temps__texte{ grid-column: 1 / 6; }
-  .temps--c .figure{ grid-column: 1 / 9; }
-  .temps--c .temps__texte{ grid-column: 9 / 13; }
+  .temps--c .figure{ grid-column: 1 / 8; }
+  .temps--c .temps__texte{ grid-column: 8 / 13; }
   .temps--d .temps__texte{ grid-column: 1 / 6; }
   .temps--d .figure{ grid-column: 6 / 13; }
 
@@ -892,6 +892,14 @@ a{ color: inherit; text-decoration: none; }
   .coordonnees{ margin-top: 3rem; }
 
   .pied__marque, .pied__nav, .pied__mentions{ grid-column: 1 / -1; }
+
+  /* Cibles tactiles portées à 44 px : la zone sensible est agrandie par un
+     calque transparent, sans déplacer le texte ni son soulignement. */
+  .lien-trace::before,
+  .entete__logo::after{
+    content: ""; position: absolute; inset: -12px -8px;
+  }
+  .coordonnees dd a::before{ inset: -14px -8px; }
 
   /* La parallaxe est désactivée : les images reprennent leur place exacte. */
   .js .parallaxe .cadre img{ transform: none; will-change: auto; }
