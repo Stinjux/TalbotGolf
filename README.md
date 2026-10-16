@@ -25,14 +25,15 @@ npm start          # http://localhost:3000
 | `mentions-legales.html`, `confidentialite.html` | pages légales, sans JavaScript |
 | `robots.txt`, `sitemap.xml` | référencement |
 | `styles.css` | toutes les variables (couleurs, tailles, durées) en tête de fichier |
-| `main.js` | en-tête au scroll, menu, révélations, compteurs, parallaxe, formulaire |
+| `main.js` | menu, section en cours, moteur de défilement (variables CSS), apparitions, compteurs, formulaire |
 | `.htaccess` | production Apache : redirection www → sans www, en-têtes de sécurité, cache, fichiers interdits |
 | `server.mjs` | serveur Node local (et Railway) : mêmes en-têtes et redirections, `/health` |
 | `Dockerfile`, `railway.toml` | déploiement — tout nouveau fichier à la racine doit être ajouté à la ligne `COPY` du Dockerfile |
 | `public/images/` | photothèque, déclinée en plusieurs largeurs |
 | `public/logos/` | logos TalbotGolf fournis, copiés tels quels |
 | `public/logos/tours/` | logos des cinq circuits, détourés et normalisés |
-| `public/fonts/` | Alegreya et Manrope (SIL OFL), hébergées sur le site |
+| `public/fonts/` | Instrument Serif et Instrument Sans (SIL OFL, licences jointes), hébergées sur le site |
+| `public/motifs/` | courbes de niveau en SVG (courbes maîtresses et intermédiaires), tracées au défilement |
 
 ---
 
@@ -119,8 +120,8 @@ puis déclinée en plusieurs largeurs.
 | `couverture-golf-1999` | STalbot-MagasineQuebec | marges resserrées | carrière |
 | `stephane-1999` · `stephane-canberra` | Talvest_chest2 · DSC_0040 | — | carrière |
 
-Traitement appliqué en CSS, donc réversible : `saturate(.82) sepia(.05)` —
-désaturation d'environ 18 % et un point de chaleur. Le plan d'étude des trous
+Traitement appliqué en CSS, donc réversible : `saturate(.9) sepia(.04)` —
+désaturation d'environ 10 % et un point de chaleur. Le plan d'étude des trous
 12 à 16 passe en bichromie vert/crème (`.figure--bichromie`).
 
 **Définitions faibles.** Sept photos sont fournies entre 768 et 1024 px de large
@@ -167,36 +168,54 @@ site, une autorisation peut être nécessaire — c'est un point à vérifier.
 Dans `index.html`, dupliquer un bloc `<article class="realisation">` :
 
 1. alterner `realisation--inverse` d'un projet au suivant (image à gauche, puis à droite) ;
-2. `realisation--vertical` pour une photo au format portrait, `realisation--compact`
-   pour resserrer la colonne d'image quand la photo est de définition modeste ;
-3. un seul `<figure>` dans `.realisation__images` occupe toute la largeur ; deux
-   `<figure>` avec `realisation__images--duo` se partagent l'espace en 7/4 ;
+2. `realisation--vertical` pour une photo au format portrait ;
+3. un seul `<figure>` dans `.realisation__images` occupe la colonne d'image ; deux
+   `<figure>` avec `realisation__images--duo` forment une grande vue et un détail
+   décalé, posé sur son angle ;
 4. renuméroter `data-index` et le `<p class="realisation__numero">` ;
 5. le bandeau `<figure class="bande">` pleine largeur est réservé aux panoramiques.
 
-Les classes `reveal`, `masque` et `parallaxe` suffisent à animer le nouveau bloc,
-sans toucher au JavaScript.
+L'attribut `data-defile` sur l'article et la classe `reveal` sur ses textes
+suffisent à animer le nouveau bloc, sans toucher au JavaScript.
 
 ---
 
 ## 5. Choix techniques
 
-- **Typographies** : Alegreya (titres, légendes italiques) et Manrope (texte,
-  interface), hébergées dans `public/fonts/` : aucune
-  requête vers Google, donc aucune adresse IP de visiteur transmise à un tiers.
-- **Animations** : IntersectionObserver et transitions CSS, sans bibliothèque.
-  Fondu + montée de 28 px en 700 ms, `cubic-bezier(.16, 1, .3, 1)`, 90 ms de
-  décalage entre éléments d'un même groupe, jouées **une seule fois**.
-- **Sans JavaScript** : le script pose la classe `js` sur `<html>` ; toutes les
-  règles d'animation en dépendent. Sans lui, la page s'affiche complète et fixe.
-- **`prefers-reduced-motion: reduce`** : tout est visible immédiatement.
-- **Sous 900 px** : une seule colonne, parallaxe désactivée, duos empilés,
-  cibles tactiles de 48 px, menu replié sous 880 px.
-- **Accessibilité** : contrastes vérifiés au-delà de 4,5:1 sur le texte courant,
-  lien d'évitement, `:focus-visible` laiton, hiérarchie de titres continue.
+- **Direction artistique — « Le relevé »** : le site se lit comme une planche de
+  géomètre. Chaux, sable (strates de pisé), olive, vert profond, accents de terre
+  cuite ; courbes de niveau, cotes autour de la photo d'accueil, fiches en
+  cartouche. Les mots-clés liés à l'eau (bleu-vert) et au coût — faisabilité,
+  budget, entretien — portent un trait de cote ; les deux phrases-clés du métier
+  deviennent des annotations en grand corps.
+- **Typographies** : Instrument Serif (titres, chiffres, citations) et Instrument
+  Sans à chasse variable (texte, libellés condensés), hébergées dans
+  `public/fonts/` : aucune requête vers un tiers.
+- **Mouvement** : défilement natif, sans bibliothèque. `main.js` écrit sur chaque
+  élément `[data-defile]` deux variables, `--entree` (0 → 1 quand le bloc monte
+  du bas de l'écran à son tiers haut) et `--traverse` (−1 → 1) ; tout le reste est
+  décrit dans `styles.css`, section 15. Séquences : le paysage d'accueil s'ouvre
+  jusqu'au plein cadre (scène fixe temporaire, le texte reste dans le flux) ; les
+  courbes de niveau se tracent ; chaque temps du métier a son ouverture (balayage
+  de relevé, plan et trame, terre qui monte, horizon) avec une image fixe le temps
+  du texte ; les réalisations s'ouvrent vers leur texte, le détail suit à une autre
+  profondeur ; le panoramique s'élargit au fond perdu ; citation et charnière
+  s'encrent mot à mot.
+- **Sans JavaScript** : la classe `moteur` n'est jamais posée ; la page est
+  complète et fixe. Seule l'ouverture du héros au chargement est en CSS pur.
+- **`prefers-reduced-motion: reduce`** : ni scène fixe, ni tracé, ni apparition ;
+  les compteurs affichent directement leur valeur.
+- **Scènes fixes** : seulement au-dessus de 1024 px de large et 680 px de haut ;
+  en dessous, tablette, mobile et écrans courts lisent une page en flux.
+- **Accessibilité** : contrastes vérifiés au-delà de 4,5:1 sur le texte courant
+  (terre cuite, olive, eau, encre secondaire), lien d'évitement, `:focus-visible`
+  terre cuite, section en cours signalée par `aria-current`, menu mobile qui rend
+  le reste de la page inerte et se ferme avec Échap.
 - **Partage et référencement** : balises Open Graph et Twitter à adresses
-  absolues, `canonical`, données structurées schema.org (`ProfessionalService`
-  et `Person`), `robots.txt` et `sitemap.xml`.
+  absolues, `canonical`, `hreflang`, données structurées schema.org en un seul
+  graphe (`WebSite`, `WebPage`, `ProfessionalService` et ses quatre services,
+  `Person`, parcours mentionnés), fil d'Ariane sur les pages légales,
+  `robots.txt` et `sitemap.xml` avec les images.
 - **Sécurité** : `.htaccess` (production) et `server.mjs` (local) envoient la
   même politique CSP stricte, sans aucune origine extérieure, et un en-tête
   HSTS. Elle porte

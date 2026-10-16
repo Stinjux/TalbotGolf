@@ -1,285 +1,255 @@
-/* TalbotGolf — défilement natif, scènes composées et améliorations progressives. */
+/* ==========================================================================
+   TalbotGolf — comportements de page
+   Défilement natif : aucune capture de la molette, aucun défilement imposé.
+   Le script mesure la position des blocs et écrit des variables CSS
+   (--entree, --traverse, --ouverture…) ; toute la chorégraphie est décrite
+   dans styles.css, section 15. Sans ce fichier, ou en mouvement réduit, la
+   page reste complète et fixe.
+   ========================================================================== */
 (function () {
   'use strict';
-  const root = document.documentElement;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const header = document.getElementById('entete');
-  const year = document.getElementById('annee');
-  if (year) year.textContent = String(new Date().getFullYear());
 
-  /* Les commandes restent indépendantes du moteur visuel. */
-  const toggle = document.querySelector('.entete__bouton');
-  const nav = document.getElementById('nav-principale');
-  function closeMenu(restoreFocus) {
-    if (!nav || !toggle) return;
-    const wasOpen = nav.hasAttribute('data-ouvert');
+  var root = document.documentElement;
+  var reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var sceneFixe = window.matchMedia('(min-width: 1024px) and (min-height: 680px)');
+  var observable = 'IntersectionObserver' in window;
+  function mouvement() { return observable && !reduit.matches; }
+  function borne(v, min, max) { return Math.min(max === undefined ? 1 : max, Math.max(min === undefined ? 0 : min, v)); }
+
+  /* ---------------------------------------------------------------- Année */
+  var annee = document.getElementById('annee');
+  if (annee) { annee.textContent = String(new Date().getFullYear()); }
+
+  /* ------------------------------------------------------ Menu replié      */
+  var entete = document.getElementById('entete');
+  var bouton = document.querySelector('.entete__bouton');
+  var nav = document.getElementById('nav-principale');
+  var arrierePlan = [document.getElementById('contenu'), document.querySelector('.pied')].filter(Boolean);
+
+  function fermerMenu(rendreFocus) {
+    if (!nav || !bouton || !nav.hasAttribute('data-ouvert')) { return; }
     delete nav.dataset.ouvert;
-    toggle.setAttribute('aria-expanded', 'false');
-    header.classList.remove('menu-ouvert');
-    if (restoreFocus && wasOpen) toggle.focus();
+    bouton.setAttribute('aria-expanded', 'false');
+    entete.classList.remove('menu-ouvert');
+    root.style.removeProperty('overflow');
+    arrierePlan.forEach(function (el) { el.inert = false; });
+    if (rendreFocus) { bouton.focus(); }
   }
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      if (nav.hasAttribute('data-ouvert')) closeMenu(false);
-      else {
-        nav.dataset.ouvert = '';
-        toggle.setAttribute('aria-expanded', 'true');
-        header.classList.add('menu-ouvert');
-      }
+  function ouvrirMenu() {
+    nav.dataset.ouvert = '';
+    bouton.setAttribute('aria-expanded', 'true');
+    entete.classList.add('menu-ouvert');
+    root.style.overflow = 'hidden';                 // la page ne défile pas sous le menu
+    arrierePlan.forEach(function (el) { el.inert = true; });
+  }
+  if (bouton && nav) {
+    bouton.addEventListener('click', function () {
+      if (nav.hasAttribute('data-ouvert')) { fermerMenu(false); } else { ouvrirMenu(); }
     });
-    nav.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(false); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(true); });
-    window.addEventListener('resize', () => { if (innerWidth > 880) closeMenu(false); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) { fermerMenu(false); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { fermerMenu(true); } });
+    window.addEventListener('resize', function () { if (window.innerWidth > 900) { fermerMenu(false); } });
   }
 
-  const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-  const mix = (a, b, p) => a.map((v, i) => Math.round(v + (b[i] - v) * p));
-  const effects = [];
-  const visibleEffects = new Set();
-  const animations = new Set();
-  const counters = new Map();
-  const navigation = [...document.querySelectorAll('.nav a[href^="#"]')].map(link => ({link, section: document.querySelector(link.getAttribute('href')), top: 0}));
-  let request = 0;
-  let navIndex = -2;
-  let opaque = false;
-  let width = innerWidth;
-  let height = innerHeight;
-  let pageLength = 1;
-  let steps = [];
-  let heroTravel = 1;
-  const hero = document.querySelector('.heros');
-  const scene = document.querySelector('.heros__scene');
-  const trace = document.querySelector('.metier__trace');
-  const dots = [...document.querySelectorAll('.metier__trace span')];
-  const articles = [...document.querySelectorAll('.temps')];
-  const pins = [
-    {element: document.querySelector('.metier__intro'), className: 'intro-fixe', top: 125, minWidth: 881},
-    {element: document.querySelector('.portrait__figure'), className: 'figure-fixe', top: 116, minWidth: 1121},
-    ...[...document.querySelectorAll('.realisation:not(.realisation--avec-bande):not(.realisation--vertical) .realisation__texte')].map(element => ({element, className: 'texte-fixe', top: 110, minWidth: 1121}))
-  ];
-  const canAnimate = 'IntersectionObserver' in window && 'animate' in Element.prototype;
-  const motionEnabled = () => canAnimate && !reduced.matches;
-
-  function schedule() { if (!request) request = requestAnimationFrame(render); }
-  function measure() {
-    width = innerWidth;
-    height = innerHeight;
-    const y = scrollY;
-    pageLength = Math.max(1, document.documentElement.scrollHeight - height);
-    navigation.forEach(item => { if (item.section) item.top = item.section.getBoundingClientRect().top + y; });
-    steps = articles.map(el => el.getBoundingClientRect().top + y);
-    heroTravel = Math.max(1, hero.offsetHeight - scene.offsetHeight - 91);
-    // Un élément plus haut que l'écran reste dans le flux et se lit entièrement.
-    const pinStates = pins.map(pin => width >= pin.minWidth && pin.element.offsetHeight + pin.top + 24 < height);
-    pins.forEach((pin, index) => pin.element.classList.toggle(pin.className, pinStates[index]));
-    schedule();
+  /* ------------------------------------------- Section en cours, fil de lecture */
+  var liensNav = [].slice.call(document.querySelectorAll('.nav a[href^="#"]')).map(function (lien) {
+    return { lien: lien, section: document.querySelector(lien.getAttribute('href')) };
+  });
+  var indexCourant = -2;
+  function majNavigation(hauteur) {
+    var courant = -1;
+    liensNav.forEach(function (item, i) {
+      if (item.section && item.section.getBoundingClientRect().top <= hauteur * .4) { courant = i; }
+    });
+    if (courant === indexCourant) { return; }
+    indexCourant = courant;
+    liensNav.forEach(function (item, i) {
+      if (i === courant) { item.lien.setAttribute('aria-current', 'location'); }
+      else { item.lien.removeAttribute('aria-current'); }
+    });
   }
-  function render() {
-    request = 0;
-    const y = scrollY;
-    const nextOpaque = y > 60;
-    if (nextOpaque !== opaque) { header.classList.toggle('est-opaque', nextOpaque); opaque = nextOpaque; }
-    header.style.setProperty('--lecture', clamp(y / pageLength).toFixed(4));
-    let current = -1;
-    navigation.forEach((item, i) => { if (item.top <= y + height * .38) current = i; });
-    if (current !== navIndex) {
-      navigation.forEach((item, i) => { if (i === current) item.link.setAttribute('aria-current', 'location'); else item.link.removeAttribute('aria-current'); });
-      navIndex = current;
+
+  /* ------------------------------------------------------ Moteur de défilement */
+  var heros = document.querySelector('.heros');
+  var etapes = document.querySelector('.metier__etapes');
+  var rail = document.querySelector('.metier__trace');
+  var jalons = rail ? [].slice.call(rail.querySelectorAll('span')) : [];
+  var temps = [].slice.call(document.querySelectorAll('.temps'));
+  var defilants = [].slice.call(document.querySelectorAll('[data-defile]'));
+  var visibles = new Set();
+  var demande = 0;
+
+  var observateurDefile = observable ? new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (entree) {
+      if (entree.isIntersecting) { visibles.add(entree.target); } else { visibles.delete(entree.target); }
+    });
+    planifier();
+  }, { rootMargin: '20% 0px 20% 0px' }) : null;
+  if (observateurDefile) { defilants.forEach(function (el) { observateurDefile.observe(el); }); }
+
+  function planifier() { if (!demande) { demande = requestAnimationFrame(peindre); } }
+
+  function peindre() {
+    demande = 0;
+    var hauteur = window.innerHeight;
+    var y = window.scrollY;
+    var longueur = Math.max(1, root.scrollHeight - hauteur);
+    entete.style.setProperty('--lecture', borne(y / longueur).toFixed(4));
+    majNavigation(hauteur);
+    if (!root.classList.contains('moteur')) { return; }
+
+    // Toutes les lectures géométriques d'abord, puis toutes les écritures.
+    var mesures = [];
+    visibles.forEach(function (el) { mesures.push([el, el.getBoundingClientRect()]); });
+    var rHeros = heros ? heros.getBoundingClientRect() : null;
+    var rEtapes = etapes ? etapes.getBoundingClientRect() : null;
+    var hauts = temps.map(function (t) { return t.getBoundingClientRect().top; });
+
+    mesures.forEach(function (m) {
+      var r = m[1];
+      var entree = borne((hauteur - r.top) / (hauteur * .62));
+      var traverse = borne((r.top + r.height / 2 - hauteur / 2) / ((hauteur + r.height) / 2), -1, 1);
+      m[0].style.setProperty('--entree', entree.toFixed(4));
+      m[0].style.setProperty('--traverse', traverse.toFixed(4));
+    });
+
+    // Héros : la fenêtre s'ouvre sur les 70 premiers pour cent du parcours fixe.
+    if (rHeros && rHeros.bottom > 0) {
+      var parcours = Math.max(1, rHeros.height - hauteur);
+      var ouverture = sceneFixe.matches ? borne(-rHeros.top / (parcours * .7)) : 0;
+      heros.style.setProperty('--ouverture', ouverture.toFixed(4));
     }
-    if (!motionEnabled()) return;
-    // Toutes les lectures géométriques précèdent les écritures de styles.
-    const frame = [...visibleEffects].map(effect => ({effect, rect: effect.element.getBoundingClientRect()}));
-    frame.forEach(({effect, rect}) => effect.paint(rect, y));
-    let step = 0;
-    steps.forEach((top, i) => { if (top < y + height * .55) step = i; });
-    dots.forEach((dot, i) => dot.classList.toggle('est-actif', i <= step));
-  }
-  function register(element, paint) {
-    if (!element) return;
-    const effect = {element, paint};
-    effects.push(effect);
-    if (!('IntersectionObserver' in window)) return;
-    effectObserver.observe(element);
-  }
-  const effectObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      effects.filter(effect => effect.element === entry.target).forEach(effect => {
-        if (entry.isIntersecting) visibleEffects.add(effect); else visibleEffects.delete(effect);
+
+    // Le rail des quatre temps : le trait suit la lecture, les jalons s'allument.
+    if (rail && rEtapes && rEtapes.bottom > 0 && rEtapes.top < hauteur) {
+      rail.style.setProperty('--etapes', borne((hauteur * .5 - rEtapes.top) / rEtapes.height).toFixed(4));
+      jalons.forEach(function (jalon, i) {
+        jalon.classList.toggle('est-actif', hauts[i] !== undefined && hauts[i] < hauteur * .5);
       });
-    });
-    schedule();
-  }, {rootMargin: '40% 0px'}) : null;
-
-  /* Le prologue se déplie sans capture de la molette ni déplacement imposé. */
-  register(hero, rect => {
-    const progress = width > 1024 && height >= 740 ? clamp(-rect.top / heroTravel) : 0;
-    hero.style.setProperty('--hero', progress.toFixed(4));
-    hero.toggleAttribute('data-sorti', progress > .4);
-  });
-  register(document.querySelector('.metier'), rect => {
-    const progress = clamp((height * .35 - rect.top) / Math.max(1, rect.height - height * .6));
-    trace.style.setProperty('--terrain', progress.toFixed(4));
-  });
-  register(document.querySelector('.realisations'), rect => {
-    const progress = clamp((height - rect.top) / (rect.height + height));
-    const color = mix([237,230,215], [221,225,207], progress);
-    ['r','g','b'].forEach((channel, i) => document.querySelector('.realisations').style.setProperty('--papier-' + channel, color[i]));
-  });
-
-  /* Deux profondeurs : grand paysage et archives, sans bouger les textes. */
-  document.querySelectorAll('.parallaxe .cadre').forEach(frame => {
-    register(frame, rect => {
-      const progress = clamp((height - rect.top) / (height + rect.height));
-      const amplitude = width > 900 ? Math.min(38, rect.height * .045) : 0;
-      frame.style.setProperty('--image-y', ((progress - .5) * amplitude * 2).toFixed(2) + 'px');
-      frame.style.setProperty('--image-scale', width > 900 ? (1.13 - progress * .035).toFixed(4) : '1');
-    });
-  });
-  const archiveGroup = document.querySelector('.carriere__archives');
-  const archives = [...archiveGroup.querySelectorAll('.figure')];
-  register(archiveGroup, rect => {
-    const progress = clamp((height - rect.top) / (height + rect.height));
-    archives.forEach((figure, i) => figure.style.setProperty('--archive-y', width > 900 ? ((progress - .5) * [-65,80,-95][i]).toFixed(2) + 'px' : '0px'));
-  });
-  const contours = document.querySelector('.chiffres__motif');
-  contours.querySelectorAll('path').forEach(path => {
-    const length = path.getTotalLength();
-    path.style.strokeDasharray = String(length);
-    path.dataset.longueur = String(length);
-  });
-  register(document.querySelector('.chiffres'), rect => {
-    const progress = clamp((height * .9 - rect.top) / Math.max(1, rect.height + height * .15));
-    contours.querySelectorAll('path').forEach((path, i) => { path.style.strokeDashoffset = String(Number(path.dataset.longueur) * (1 - clamp(progress * 1.4 - i * .04))); });
-  });
-
-  /* Encrage mot à mot : même texte, même ordre et même lecture accessible. */
-  function wrapWords(element, className) {
-    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    const words = [];
-    nodes.forEach(node => {
-      const fragment = document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(part => {
-        if (!part) return;
-        if (/^\s+$/.test(part)) fragment.appendChild(document.createTextNode(part));
-        else {
-          const span = document.createElement('span');
-          span.className = className;
-          span.textContent = part;
-          fragment.appendChild(span);
-          words.push(span);
-        }
-      });
-      node.replaceWith(fragment);
-    });
-    return words;
-  }
-  const titles = new Map();
-  document.querySelectorAll('.titre-masque').forEach(title => titles.set(title, wrapWords(title, 'mot-titre')));
-  document.querySelectorAll('.realisations__charniere, .citation p').forEach(element => {
-    const words = wrapWords(element, 'mot-encre');
-    const portrait = !!element.closest('.portrait');
-    register(element, rect => {
-      const progress = clamp((height * .88 - rect.top) / (height * .48 + rect.height));
-      element.style.setProperty('--encrage', progress.toFixed(4));
-      words.forEach((word, i) => {
-        const p = clamp(progress * (words.length + 4) / 4 - i / 4);
-        word.style.setProperty('--mot-couleur', 'rgb(' + mix(portrait ? [218,179,156] : [107,115,87], portrait ? [250,242,224] : [33,62,50], p).join(',') + ')');
-      });
-    });
-  });
-
-  /* Apparitions orchestrées : des masques différenciés et une perspective
-     interne à l'image. Aucun état caché permanent, aucun délai pour lire. */
-  function play(element, frames, options) {
-    if (!motionEnabled()) return;
-    const animation = element.animate(frames, {duration: 900, fill: 'backwards', easing: 'cubic-bezier(.19,1,.22,1)', ...options});
-    animations.add(animation);
-    const done = () => animations.delete(animation);
-    animation.onfinish = done;
-    animation.oncancel = done;
-  }
-  function reveal(element) {
-    element.classList.add('est-visible');
-    if (!motionEnabled()) return;
-    if (titles.has(element)) {
-      titles.get(element).forEach((word, index) => play(word, [
-        {transform: 'translate3d(0,75%,0)', clipPath:'inset(0 0 100% 0)', opacity: .2},
-        {transform: 'translate3d(0,0,0)', clipPath:'inset(-20% -3% -20% -3%)', opacity: 1}
-      ], {duration: 1100, delay: Math.min(index * 42, 240)}));
-    } else if (element.classList.contains('masque')) {
-      const frame = element.querySelector('.cadre');
-      const reverse = !!element.closest('.realisation--inverse');
-      const middle = !!element.closest('.bande');
-      play(frame, [
-        {clipPath: middle ? 'inset(22% 8% 22% 8%)' : reverse ? 'inset(0 0 0 96%)' : 'inset(0 96% 0 0)'},
-        {clipPath: 'inset(0)'}
-      ], {duration: middle ? 1500 : 1250});
-      const caption = element.querySelector('.legende');
-      if (caption) play(caption, [{opacity:.45,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}], {duration:800,delay:120});
-    } else {
-      play(element, [{opacity:.4,transform:'translate3d(0,20px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}], {duration:850});
     }
   }
-  const revealElements = [...document.querySelectorAll('.reveal,.titre-masque,.masque')];
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        reveal(entry.target);
-        observer.unobserve(entry.target);
-      });
-    }, {threshold: .08, rootMargin: '0px 0px -5% 0px'});
-    revealElements.forEach(el => observer.observe(el));
-  } else revealElements.forEach(el => el.classList.add('est-visible'));
 
-  /* Les valeurs d'origine restent dans le HTML et reviennent immédiatement
-     si le mouvement est réduit ou si l'onglet passe en arrière-plan. */
-  function finishCounter(element) {
-    if (counters.has(element)) cancelAnimationFrame(counters.get(element));
-    counters.delete(element);
-    element.textContent = element.dataset.compteur;
+  function mesurer() {
+    // Les jalons du rail sont posés à la hauteur de chaque temps.
+    jalons.forEach(function (jalon, i) {
+      if (temps[i]) { jalon.style.setProperty('--y', (temps[i].offsetTop - 4) + 'px'); }
+    });
+    planifier();
   }
-  function count(element) {
-    if (!motionEnabled() || document.hidden) return finishCounter(element);
-    const target = Number(element.dataset.compteur);
-    let start;
-    function step(now) {
-      if (start === undefined) start = now;
-      const progress = clamp((now - start) / 1500);
-      element.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 3))));
-      if (progress < 1) counters.set(element, requestAnimationFrame(step)); else finishCounter(element);
+
+  /* ------------------------------------------------------ Encrage mot à mot */
+  /* Même texte, même ordre : chaque mot devient un <span> que le défilement encre. */
+  function decouperMots(conteneur, cible) {
+    var parcourir = document.createTreeWalker(cible, NodeFilter.SHOW_TEXT);
+    var noeuds = [];
+    while (parcourir.nextNode()) { noeuds.push(parcourir.currentNode); }
+    var n = 0;
+    noeuds.forEach(function (noeud) {
+      var fragment = document.createDocumentFragment();
+      noeud.textContent.split(/(\s+)/).forEach(function (morceau) {
+        if (!morceau) { return; }
+        if (/^\s+$/.test(morceau)) { fragment.appendChild(document.createTextNode(morceau)); return; }
+        var mot = document.createElement('span');
+        mot.className = 'mot';
+        mot.style.setProperty('--w', String(n++));
+        mot.textContent = morceau;
+        fragment.appendChild(mot);
+      });
+      noeud.parentNode.replaceChild(fragment, noeud);
+    });
+    conteneur.setAttribute('data-mots', '');
+    conteneur.style.setProperty('--n', String(n));
+  }
+  var charniere = document.querySelector('.realisations__charniere');
+  if (charniere) { decouperMots(charniere, charniere); }
+  var citation = document.querySelector('.citation');
+  if (citation && citation.querySelector('p')) { decouperMots(citation, citation.querySelector('p')); }
+
+  /* ------------------------------------------------------ Apparitions      */
+  /* Un léger décalage entre les éléments d'un même groupe ; une seule fois. */
+  var apparitions = [].slice.call(document.querySelectorAll('.reveal, .titre-masque'));
+  var groupes = new Map();
+  apparitions.forEach(function (el) {
+    var parent = el.parentElement;
+    if (!groupes.has(parent)) { groupes.set(parent, []); }
+    groupes.get(parent).push(el);
+  });
+  groupes.forEach(function (liste) {
+    liste.forEach(function (el, i) { el.style.setProperty('--i', String(Math.min(i, 6))); });
+  });
+  document.querySelectorAll('.titre-masque').forEach(function (titre) {
+    titre.querySelectorAll('.ligne__i').forEach(function (ligne, i) { ligne.style.setProperty('--i', String(i)); });
+  });
+
+  function toutAfficher() { apparitions.forEach(function (el) { el.classList.add('est-visible'); }); }
+  if (observable) {
+    var observateurApparitions = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (entree) {
+        if (!entree.isIntersecting) { return; }
+        entree.target.classList.add('est-visible');
+        observateurApparitions.unobserve(entree.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    apparitions.forEach(function (el) { observateurApparitions.observe(el); });
+  } else {
+    toutAfficher();
+  }
+
+  /* ------------------------------------------------------ Compteurs        */
+  /* La valeur finale reste dans le HTML ; elle revient aussitôt si le
+     mouvement est réduit ou si l'onglet passe en arrière-plan.             */
+  var enCours = new Map();
+  function terminerCompteur(el) {
+    if (enCours.has(el)) { cancelAnimationFrame(enCours.get(el)); enCours.delete(el); }
+    el.textContent = el.getAttribute('data-compteur');
+  }
+  function compter(el) {
+    if (!mouvement() || document.hidden) { terminerCompteur(el); return; }
+    var cible = parseInt(el.getAttribute('data-compteur'), 10);
+    if (isNaN(cible)) { return; }
+    var depart = null;
+    function pas(t) {
+      if (depart === null) { depart = t; }
+      var p = borne((t - depart) / 1600);
+      el.textContent = String(Math.round(cible * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) { enCours.set(el, requestAnimationFrame(pas)); } else { terminerCompteur(el); }
     }
-    counters.set(element, requestAnimationFrame(step));
+    el.textContent = '0';
+    enCours.set(el, requestAnimationFrame(pas));
   }
-  if ('IntersectionObserver' in window) {
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) { count(entry.target); counterObserver.unobserve(entry.target); } });
-    }, {threshold: .6});
-    document.querySelectorAll('[data-compteur]').forEach(el => counterObserver.observe(el));
+  if (observable) {
+    var observateurCompteurs = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (entree) {
+        if (!entree.isIntersecting) { return; }
+        compter(entree.target);
+        observateurCompteurs.unobserve(entree.target);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-compteur]').forEach(function (el) { observateurCompteurs.observe(el); });
   }
-  function settle() {
-    animations.forEach(animation => animation.cancel());
-    animations.clear();
-    [...counters.keys()].forEach(finishCounter);
-  }
-  function syncMotion() {
-    root.classList.toggle('cinema', motionEnabled());
-    if (!motionEnabled()) {
-      settle();
-      contours.querySelectorAll('path').forEach(path => path.style.strokeDashoffset = '0');
+
+  /* ------------------------------------------------------ Mouvement réduit */
+  function synchroniser() {
+    var actif = mouvement();
+    root.classList.toggle('moteur', actif);
+    if (!actif) {
+      toutAfficher();
+      enCours.forEach(function (_, el) { terminerCompteur(el); });
     }
-    measure();
+    mesurer();
   }
-  window.addEventListener('scroll', schedule, {passive:true});
-  window.addEventListener('resize', measure, {passive:true});
-  window.addEventListener('pageshow', measure);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) settle(); else schedule(); });
-  if (reduced.addEventListener) reduced.addEventListener('change', syncMotion);
-  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
-  if (document.fonts) document.fonts.ready.then(measure);
-  syncMotion();
+  if (reduit.addEventListener) { reduit.addEventListener('change', synchroniser); }
+  if (sceneFixe.addEventListener) { sceneFixe.addEventListener('change', mesurer); }
+
+  window.addEventListener('scroll', planifier, { passive: true });
+  window.addEventListener('resize', mesurer, { passive: true });
+  window.addEventListener('pageshow', mesurer);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { enCours.forEach(function (_, el) { terminerCompteur(el); }); }
+  });
+  if ('ResizeObserver' in window) { new ResizeObserver(mesurer).observe(document.body); }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(mesurer); }
+  synchroniser();
 
   /* ------------------------------------------------------ Formulaire       */
   /* Voie de secours tant qu'aucun service d'envoi n'est branché : on compose

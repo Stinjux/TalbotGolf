@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://talbotgolf.com/</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/heros-green-ocean-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/masterplan-aerien-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/plan-etude-trous-12-16-1271.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/ourika-modelage-950.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/green-en-jeu-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/ourika-crepuscule-1024.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/ourika-clubhouse-800.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/casablanca-ensemble-768.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/casablanca-jacaranda-768.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/palmeraie-ensemble-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/palmeraie-panoramique-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/mazagan-green-resort-2400.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/mazagan-links-1024.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/royal-marrakech-site-2088.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/stephane-portrait-1600.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/couverture-golf-1999-1200.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/stephane-1999-870.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://talbotgolf.com/public/images/stephane-canberra-1800.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://talbotgolf.com/mentions-legales.html</loc>
