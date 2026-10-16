@@ -785,13 +785,6 @@ a{ color: inherit; text-decoration: none; }
 .legal__texte li + li{ margin-top: .4rem; }
 .legal__texte strong{ color: var(--encre); font-weight: 600; }
 .legal__texte a{ color: var(--encre); text-decoration: underline; text-decoration-color: var(--laiton); text-underline-offset: .2em; }
-/* Informations encore manquantes : bien visibles, pour ne pas être oubliées. */
-.a-completer{
-  background: rgba(176, 138, 74, .18);
-  border-bottom: 1px dashed var(--laiton-texte);
-  padding: 0 .25em;
-  color: var(--laiton-texte);
-}
 
 /* ============================== 13. ANIMATIONS ==============================
    Tout ce qui suit n'existe que si JavaScript a posé la classe « js » sur <html>.

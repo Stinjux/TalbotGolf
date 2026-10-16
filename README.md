@@ -71,11 +71,13 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
   et les deux pages légales.
 - Zone d'intervention « France, Maroc et bassin méditerranéen ».
 
-### Pages légales — informations à compléter
-Les éléments manquants sont surlignés sur la page même (classe `a-completer`) :
-forme juridique et capital, adresse du siège, immatriculation (RC / ICE au Maroc
-ou SIREN / RCS en France), droit applicable. Les coordonnées de l'hébergeur
-HostMetro sont reprises de sa facture.
+### Pages légales
+L'éditeur est présenté comme une personne : Stéphane Talbot, sous le nom
+commercial TalbotGolf, sans forme juridique ni adresse. Lorsqu'une structure
+sera créée, ajouter dans `mentions-legales.html` sa forme juridique, son capital,
+son adresse, son immatriculation et le droit applicable, et dans
+`confidentialite.html` l'adresse du responsable du traitement.
+Les coordonnées de l'hébergeur HostMetro sont reprises de sa facture.
 La politique de confidentialité décrit le site tel qu'il est : aucun cookie,
 aucune mesure d'audience, aucun service tiers. **Tout ajout de ce type
 (Google Analytics, carte, vidéo intégrée, service de formulaire) impose de la
@@ -214,6 +216,6 @@ sans toucher au JavaScript.
 - [ ] Fournir des fichiers plus grands pour les sept photos en basse définition
 - [ ] Brancher le formulaire sur un service d'envoi
 - [ ] Renseigner le vrai numéro de téléphone
-- [ ] Compléter les mentions légales (éditeur, immatriculation, hébergeur, droit applicable)
+- [ ] Compléter les mentions légales lorsque la structure juridique sera créée
 - [ ] Déposer la nouvelle version chez HostMetro, avec `.htaccess`
 - [ ] Vérifier la question des marques pour les logos de circuits
