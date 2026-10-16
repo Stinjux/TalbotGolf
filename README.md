@@ -74,7 +74,8 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 ### Pages légales — informations à compléter
 Les éléments manquants sont surlignés sur la page même (classe `a-completer`) :
 forme juridique et capital, adresse du siège, immatriculation (RC / ICE au Maroc
-ou SIREN / RCS en France), adresse et téléphone de l'hébergeur, droit applicable.
+ou SIREN / RCS en France), droit applicable. Les coordonnées de l'hébergeur
+HostMetro sont reprises de sa facture.
 La politique de confidentialité décrit le site tel qu'il est : aucun cookie,
 aucune mesure d'audience, aucun service tiers. **Tout ajout de ce type
 (Google Analytics, carte, vidéo intégrée, service de formulaire) impose de la
