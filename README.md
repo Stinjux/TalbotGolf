@@ -32,7 +32,7 @@ npm start          # http://localhost:3000
 | `public/images/` | photothèque, déclinée en plusieurs largeurs |
 | `public/logos/` | logos TalbotGolf fournis, copiés tels quels |
 | `public/logos/tours/` | logos des cinq circuits, détourés et normalisés |
-| `public/fonts/` | Newsreader et Archivo (SIL OFL), hébergées sur le site |
+| `public/fonts/` | Alegreya et Manrope (SIL OFL), hébergées sur le site |
 
 ---
 
@@ -181,8 +181,8 @@ sans toucher au JavaScript.
 
 ## 5. Choix techniques
 
-- **Typographies** : Newsreader (titres, légendes italiques) et Archivo (texte,
-  interface — c'est la police du logo), hébergées dans `public/fonts/` : aucune
+- **Typographies** : Alegreya (titres, légendes italiques) et Manrope (texte,
+  interface), hébergées dans `public/fonts/` : aucune
   requête vers Google, donc aucune adresse IP de visiteur transmise à un tiers.
 - **Animations** : IntersectionObserver et transitions CSS, sans bibliothèque.
   Fondu + montée de 28 px en 700 ms, `cubic-bezier(.16, 1, .3, 1)`, 90 ms de
