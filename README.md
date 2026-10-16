@@ -12,13 +12,16 @@ npm start          # http://localhost:3000
 | Fichier | Rôle |
 |---|---|
 | `index.html` | structure et contenu de la page |
+| `mentions-legales.html`, `confidentialite.html` | pages légales, sans JavaScript |
+| `robots.txt`, `sitemap.xml` | référencement |
 | `styles.css` | toutes les variables (couleurs, tailles, durées) en tête de fichier |
 | `main.js` | en-tête au scroll, menu, révélations, compteurs, parallaxe, formulaire |
 | `server.mjs` | serveur statique, en-têtes de sécurité, redirections, `/health` |
-| `Dockerfile`, `railway.toml` | déploiement |
+| `Dockerfile`, `railway.toml` | déploiement — tout nouveau fichier à la racine doit être ajouté à la ligne `COPY` du Dockerfile |
 | `public/images/` | photothèque, déclinée en plusieurs largeurs |
 | `public/logos/` | logos TalbotGolf fournis, copiés tels quels |
 | `public/logos/tours/` | logos des cinq circuits, détourés et normalisés |
+| `public/fonts/` | Newsreader et Archivo (SIL OFL), hébergées sur le site |
 
 ---
 
@@ -34,8 +37,8 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 `<div><dt>Année</dt><dd>2014</dd></div>`.
 
 ### Contenu inventé, à valider mot à mot
-- **Chiffres clés** — « 35 années sur le terrain », « 18 parcours dessinés ou
-  rénovés », « 620 hectares modelés ». Chiffres inventés.
+- **Chiffres clés** — validés : 35 années sur le terrain, 3 parcours dessinés
+  et construits, 6 projets de rénovation, et plusieurs projets en cours.
   → `index.html`, attributs `data-compteur`.
 - **Citation du portrait** — « On ne dessine pas un trou de la même manière quand
   on l'a joué sous pression. » Inventée : elle doit devenir une vraie phrase de
@@ -44,18 +47,33 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
   particulier : l'orientation des greens de Palm Ourika vers l'Atlas, les arbres
   conservés à Palm Casablanca, le parcours de la Palmeraie resté en service
   pendant les travaux.
-- **Les deux paragraphes de la section Carrière** — « quatre continents », la
-  lecture des greens, le rapport entre le jeu et le dessin.
 - **Biographie du portrait** — sauf la mention de la couverture d'avril 1999,
   qui est documentée.
 - **Lieu de Mazagan** — « El Jadida, Maroc » est déduit, à confirmer.
 - **Textes des quatre temps du métier** — ton et contenu à valider.
 
-### Coordonnées — encore fictives
-- Téléphone `+33 6 00 00 00 00`.
-- Courriel `contact@talbotgolf.com` → présent **à trois endroits** : le lien de la
-  section contact, et la constante `ADRESSE` en bas de `main.js`.
+### Coordonnées
+- Téléphone `+33 6 00 00 00 00` — **encore fictif**, présent dans `index.html`
+  (section contact) et `mentions-legales.html`.
+- Courriel `stephane@talbotgolf.com` → présent dans `index.html` (lien de la
+  section contact et données structurées), la constante `ADRESSE` de `main.js`,
+  et les deux pages légales.
 - Zone d'intervention « France, Maroc et bassin méditerranéen ».
+
+### Pages légales — informations à compléter
+Les éléments manquants sont surlignés sur la page même (classe `a-completer`) :
+forme juridique et capital, adresse du siège, immatriculation (RC / ICE au Maroc
+ou SIREN / RCS en France), adresse et téléphone de l'hébergeur, droit applicable.
+La politique de confidentialité décrit le site tel qu'il est : aucun cookie,
+aucune mesure d'audience, aucun service tiers. **Tout ajout de ce type
+(Google Analytics, carte, vidéo intégrée, service de formulaire) impose de la
+mettre à jour.** Une relecture par un juriste reste conseillée.
+
+### Domaine
+Les adresses absolues (canonical, Open Graph, données structurées, `robots.txt`,
+`sitemap.xml`) supposent que le site est servi sur **https://talbotgolf.com/**.
+Si le domaine est différent (www, autre extension), remplacer partout
+`https://talbotgolf.com`.
 
 ### Formulaire — pas encore connecté
 Le formulaire n'envoie rien vers un serveur. `main.js` ouvre le logiciel de
@@ -150,7 +168,8 @@ sans toucher au JavaScript.
 ## 5. Choix techniques
 
 - **Typographies** : Newsreader (titres, légendes italiques) et Archivo (texte,
-  interface — c'est la police du logo), servies par Google Fonts.
+  interface — c'est la police du logo), hébergées dans `public/fonts/` : aucune
+  requête vers Google, donc aucune adresse IP de visiteur transmise à un tiers.
 - **Animations** : IntersectionObserver et transitions CSS, sans bibliothèque.
   Fondu + montée de 28 px en 700 ms, `cubic-bezier(.16, 1, .3, 1)`, 90 ms de
   décalage entre éléments d'un même groupe, jouées **une seule fois**.
@@ -161,7 +180,11 @@ sans toucher au JavaScript.
   cibles tactiles de 48 px, menu replié sous 880 px.
 - **Accessibilité** : contrastes vérifiés au-delà de 4,5:1 sur le texte courant,
   lien d'évitement, `:focus-visible` laiton, hiérarchie de titres continue.
-- **Sécurité** : `server.mjs` envoie une politique CSP stricte. Elle porte
+- **Partage et référencement** : balises Open Graph et Twitter à adresses
+  absolues, `canonical`, données structurées schema.org (`ProfessionalService`
+  et `Person`), `robots.txt` et `sitemap.xml`.
+- **Sécurité** : `server.mjs` envoie une politique CSP stricte, sans aucune
+  origine extérieure, et un en-tête HSTS. Elle porte
   l'empreinte sha256 du court script en ligne de `index.html` — **toute
   modification de ce script oblige à recalculer l'empreinte**, sinon la page
   s'affichera sans la classe `js`.
@@ -176,5 +199,7 @@ sans toucher au JavaScript.
 - [ ] Fournir la photo avec le trophée
 - [ ] Fournir des fichiers plus grands pour les sept photos en basse définition
 - [ ] Brancher le formulaire sur un service d'envoi
-- [ ] Renseigner les vraies coordonnées
+- [ ] Renseigner le vrai numéro de téléphone
+- [ ] Compléter les mentions légales (éditeur, immatriculation, hébergeur, droit applicable)
+- [ ] Confirmer le domaine https://talbotgolf.com
 - [ ] Vérifier la question des marques pour les logos de circuits

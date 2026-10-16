@@ -211,7 +211,7 @@
   /* ------------------------------------------------------ Formulaire       */
   /* Voie de secours tant qu'aucun service d'envoi n'est branché : on compose
      un courriel prérempli. À remplacer par un vrai « action » côté serveur.  */
-  var ADRESSE = 'contact@talbotgolf.com';
+  var ADRESSE = 'stephane@talbotgolf.com';
   var formulaire = document.getElementById('formulaire');
   var retour = document.getElementById('formulaire-retour');
 

@@ -16,12 +16,13 @@ const racine = dirname(fileURLToPath(import.meta.url));
 /* Politique de sécurité du contenu.
    - le sha256 correspond au court script en ligne de <head> qui pose la classe « js » ;
    - data: est nécessaire au grain de papier (bruit SVG en arrière-plan CSS) ;
-   - Google Fonts fournit Newsreader et Archivo. */
+   - les polices sont hébergées sur le site : aucune origine extérieure n'est admise.
+     Le bloc JSON-LD de <head> n'est pas exécuté et n'a pas besoin d'être autorisé. */
 const politique = [
   "default-src 'self'",
   "img-src 'self' data:",
-  "style-src 'self' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self'",
+  "font-src 'self'",
   "script-src 'self' 'sha256-g9CG9SjnbZac20R7zoBeOJ3k2VF0kLwLJccW/K1JLcE='",
   "base-uri 'self'",
   "frame-ancestors 'none'",
@@ -42,6 +43,8 @@ const TYPES = {
   '.png':  'image/png',
   '.jpg':  'image/jpeg',
   '.webp': 'image/webp',
+  '.woff2':'font/woff2',
+  '.xml':  'application/xml; charset=utf-8',
   '.txt':  'text/plain; charset=utf-8',
   '.md':   'text/plain; charset=utf-8'
 };
@@ -50,6 +53,8 @@ http.createServer(async (req, res) => {
   res.setHeader('Content-Security-Policy', politique);
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  // Railway sert le site en HTTPS : le navigateur s'en souvient pendant un an.
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000');
 
   try {
     const url = new URL(req.url, 'http://localhost');

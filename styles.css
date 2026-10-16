@@ -1,9 +1,33 @@
 /* ==========================================================================
    TalbotGolf — feuille de style
-   1. Variables · 2. Base · 3. Utilitaires · 4. En-tête · 5. Héros
+   0. Polices · 1. Variables · 2. Base · 3. Utilitaires · 4. En-tête · 5. Héros
    6. Le métier · 7. Réalisations · 8. Portrait · 9. Carrière
-   10. Chiffres · 11. Contact · 12. Pied de page · 13. Animations · 14. Responsive
+   10. Chiffres · 11. Contact · 12. Pied de page · 12 bis. Pages légales
+   13. Animations · 14. Responsive
    ========================================================================== */
+
+/* ============================== 0. POLICES ==============================
+   Newsreader et Archivo (licence SIL OFL), hébergées sur le site : aucune
+   requête vers Google, donc aucune adresse IP de visiteur transmise à un tiers.
+   Fichiers variables, sous-ensembles latin et latin étendu.                 */
+@font-face{ font-family: "Archivo"; font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url("public/fonts/archivo-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face{ font-family: "Archivo"; font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url("public/fonts/archivo-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face{ font-family: "Newsreader"; font-style: italic; font-weight: 300 500; font-display: swap;
+  src: url("public/fonts/newsreader-italique-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face{ font-family: "Newsreader"; font-style: italic; font-weight: 300 500; font-display: swap;
+  src: url("public/fonts/newsreader-italique-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face{ font-family: "Newsreader"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("public/fonts/newsreader-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face{ font-family: "Newsreader"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("public/fonts/newsreader-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
 /* ============================== 1. VARIABLES ============================== */
 :root{
@@ -304,11 +328,23 @@ a{ color: inherit; text-decoration: none; }
 .heros__media img{ width: 100%; height: 100%; object-fit: cover; }
 .heros__voile{
   position: absolute; inset: 0;
-  /* Bandeau haut : lisibilité de la navigation blanche sur n'importe quelle photo. */
-  background: linear-gradient(to bottom,
-    rgba(10, 46, 33, .66) 0,
-    rgba(10, 46, 33, .14) 150px,
-    rgba(10, 46, 33, .00) 250px);
+  /* Trois voiles superposés, et non un aplat : la photo reste visible à droite
+     et en haut, le texte clair reste lisible à gauche et en bas.
+     · bandeau haut : lisibilité de la navigation blanche ;
+     · dégradé latéral : sous le bloc de titre, posé à gauche ;
+     · dégradé bas : sous l'accroche et le bouton.                              */
+  background:
+    linear-gradient(to bottom,
+      rgba(10, 46, 33, .66) 0,
+      rgba(10, 46, 33, .14) 150px,
+      rgba(10, 46, 33, .00) 250px),
+    linear-gradient(to right,
+      rgba(10, 46, 33, .80) 0,
+      rgba(10, 46, 33, .62) 36%,
+      rgba(10, 46, 33, .00) 72%),
+    linear-gradient(to top,
+      rgba(10, 46, 33, .62) 0,
+      rgba(10, 46, 33, .00) 55%);
 }
 .heros__contenu{
   position: relative; z-index: 2;
@@ -317,21 +353,10 @@ a{ color: inherit; text-decoration: none; }
   margin-inline: auto; padding-inline: var(--marge-page);
   color: var(--creme);
 }
-/* Fond du bloc de titre : ancré sur le bloc lui-même, et non sur un pourcentage
-   de la hauteur d'écran. Le texte clair reste lisible quelle que soit la photo,
-   la taille de l'écran ou la longueur de l'accroche. */
-.heros__contenu::before{
-  content: "";
-  position: absolute;
-  top: -5rem; bottom: -9rem; left: -50vw; right: -50vw;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(to top,
-    rgba(10, 46, 33, .92) 0,
-    rgba(10, 46, 33, .92) 62%,
-    rgba(10, 46, 33, .88) 88%,
-    rgba(10, 46, 33, .78) 96%,
-    rgba(10, 46, 33, .00) 100%);
+/* Ombre portée très diffuse : assure le contraste là où la photo s'éclaircit,
+   sans assombrir l'image elle-même. */
+.heros__titre, .heros__accroche, .heros .surtitre{
+  text-shadow: 0 1px 18px rgba(10, 46, 33, .55), 0 1px 2px rgba(10, 46, 33, .35);
 }
 .heros__titre{
   font-size: var(--t-display);
@@ -441,7 +466,9 @@ a{ color: inherit; text-decoration: none; }
 
 .realisation__texte{ grid-column: 9 / 13; padding-bottom: .35rem; }
 .realisation--inverse .realisation__images{ grid-column: 5 / 13; }
-.realisation--inverse .realisation__texte{ grid-column: 1 / 5; }
+/* Le texte suit les images dans le HTML : sans grid-row, la grille le
+   reporterait sur une deuxième ligne, sous les photos. */
+.realisation--inverse .realisation__texte{ grid-column: 1 / 5; grid-row: 1; }
 
 /* Photo unique de définition modeste : colonne d'image resserrée, pour ne pas
    l'étirer au-delà de ce que le fichier permet. */
@@ -643,6 +670,13 @@ a{ color: inherit; text-decoration: none; }
   font-size: var(--t-petit);
   color: var(--creme-70);
 }
+.chiffres__note{
+  grid-column: 1 / -1;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  color: var(--creme-70);
+}
 
 /* ============================== 11. CONTACT ============================== */
 .contact__intro{ grid-column: 1 / 9; margin-bottom: clamp(3rem, 6vw, 5rem); }
@@ -720,6 +754,43 @@ a{ color: inherit; text-decoration: none; }
   margin: 0;
   font-size: .8125rem; line-height: 1.6;
   color: var(--creme-70);
+}
+.pied__legal{ margin-top: 1rem; }
+.pied__legal a:hover{ color: var(--creme); }
+
+/* ============================== 12 bis. PAGES LÉGALES ==============================
+   Mentions légales et confidentialité : en-tête figé en version opaque,
+   une seule colonne de lecture, aucun JavaScript.                              */
+.entete--fixe{ background: var(--creme); border-bottom-color: var(--filet); }
+.entete__retour{
+  font-size: var(--t-label); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .13em;
+  padding: .6rem 0;
+}
+.legal{ padding-top: calc(var(--section-y) + 3rem); }
+.legal__texte{ grid-column: 2 / 10; max-width: 70ch; }
+.legal__texte h1{ font-size: var(--t-h2); margin-bottom: 1rem; }
+.legal__maj{
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  color: var(--encre-70); margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+.legal__texte h2{
+  font-size: var(--t-h3);
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--filet);
+}
+.legal__texte p:not(.surtitre), .legal__texte li{ color: var(--encre-70); }
+.legal__texte ul{ padding-left: 1.2rem; margin: 0 0 1.15em; }
+.legal__texte li + li{ margin-top: .4rem; }
+.legal__texte strong{ color: var(--encre); font-weight: 600; }
+.legal__texte a{ color: var(--encre); text-decoration: underline; text-decoration-color: var(--laiton); text-underline-offset: .2em; }
+/* Informations encore manquantes : bien visibles, pour ne pas être oubliées. */
+.a-completer{
+  background: rgba(176, 138, 74, .18);
+  border-bottom: 1px dashed var(--laiton-texte);
+  padding: 0 .25em;
+  color: var(--laiton-texte);
 }
 
 /* ============================== 13. ANIMATIONS ==============================
@@ -812,7 +883,7 @@ a{ color: inherit; text-decoration: none; }
 
 /* Menu replié */
 @media (max-width: 880px){
-  .entete__bouton{ display: inline-flex; }
+  .js .entete__bouton{ display: inline-flex; }   /* sans JS, il ne ferait rien */
   .js .nav{
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--creme);
@@ -835,10 +906,23 @@ a{ color: inherit; text-decoration: none; }
 
 /* Sous 900 px : une seule colonne, parallaxe coupée, héros plus court. */
 @media (max-width: 900px){
-  .heros{ min-height: 84svh; }
+  /* Le texte occupe toute la largeur : le voile vient du bas, et le héros garde
+     toute la hauteur d'écran pour laisser la photo visible au-dessus du titre. */
+  .heros__voile{
+    background:
+      linear-gradient(to bottom,
+        rgba(10, 46, 33, .66) 0,
+        rgba(10, 46, 33, .00) 140px),
+      linear-gradient(to top,
+        rgba(10, 46, 33, .94) 0,
+        rgba(10, 46, 33, .86) 50%,
+        rgba(10, 46, 33, .40) 68%,
+        rgba(10, 46, 33, .00) 82%);
+  }
   .heros__titre{ max-width: 100%; }
   .heros__legende{
     position: static; text-align: left;
+    width: 100%;                 /* sinon la marge auto la centre dans le flex */
     max-width: var(--largeur-max); margin: 1.75rem auto 0;
     padding-inline: var(--marge-page);
   }
@@ -864,7 +948,7 @@ a{ color: inherit; text-decoration: none; }
   .realisation--compact .realisation__images,
   .realisation--compact.realisation--inverse .realisation__images{ grid-column: 1 / -1; }
   .realisation--inverse .realisation__images{ order: 1; }
-  .realisation--inverse .realisation__texte{ order: 2; }
+  .realisation--inverse .realisation__texte{ order: 2; grid-row: auto; }
   /* Les deux photos d'un duo se posent l'une sous l'autre, sans décalage. */
   .realisation__images--duo{ grid-template-columns: 1fr; }
   .realisation__images--duo > .figure:last-child{ margin-top: 0; }
@@ -892,6 +976,7 @@ a{ color: inherit; text-decoration: none; }
   .coordonnees{ margin-top: 3rem; }
 
   .pied__marque, .pied__nav, .pied__mentions{ grid-column: 1 / -1; }
+  .legal__texte{ grid-column: 1 / -1; }
 
   /* Cibles tactiles portées à 44 px : la zone sensible est agrandie par un
      calque transparent, sans déplacer le texte ni son soulignement. */

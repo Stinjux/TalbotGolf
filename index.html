@@ -8,28 +8,61 @@
 <meta name="description" content="Stéphane Talbot dessine, modèle et accompagne des parcours de golf, du premier relevé de terrain au premier tour de jeu. Du dessin à l'exploitation.">
 <meta name="author" content="Stéphane Talbot — TalbotGolf">
 <meta name="theme-color" content="#0A2E21">
+<link rel="canonical" href="https://talbotgolf.com/">
 
 <!-- Open Graph / partage social -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="TalbotGolf">
+<meta property="og:url" content="https://talbotgolf.com/">
 <meta property="og:title" content="TalbotGolf — Du dessin à l'exploitation">
 <meta property="og:description" content="Conseil, conception et rénovation de parcours de golf. Stéphane Talbot, du premier relevé de terrain au premier tour de jeu.">
-<meta property="og:image" content="public/images/heros-green-ocean-1600.jpg">
+<!-- Les réseaux sociaux exigent une adresse complète pour l'image d'aperçu. -->
+<meta property="og:image" content="https://talbotgolf.com/public/images/heros-green-ocean-1600.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="987">
 <meta property="og:image:alt" content="Green en bord d'océan, en lumière de fin de journée.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TalbotGolf — Du dessin à l'exploitation">
+<meta name="twitter:description" content="Conseil, conception et rénovation de parcours de golf. Stéphane Talbot, du premier relevé de terrain au premier tour de jeu.">
+<meta name="twitter:image" content="https://talbotgolf.com/public/images/heros-green-ocean-1600.jpg">
+<meta name="twitter:image:alt" content="Green en bord d'océan, en lumière de fin de journée.">
+
+<!-- Données structurées pour les moteurs de recherche (non exécutées par le navigateur). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://talbotgolf.com/#entreprise",
+  "name": "TalbotGolf",
+  "url": "https://talbotgolf.com/",
+  "logo": "https://talbotgolf.com/public/logos/talbotgolf-favicon-512.png",
+  "image": "https://talbotgolf.com/public/images/heros-green-ocean-1600.jpg",
+  "description": "Conseil, conception et rénovation de parcours de golf, du premier relevé de terrain à l'exploitation.",
+  "email": "stephane@talbotgolf.com",
+  "areaServed": ["Maroc", "France", "Bassin méditerranéen"],
+  "founder": {
+    "@type": "Person",
+    "@id": "https://talbotgolf.com/#stephane-talbot",
+    "name": "Stéphane Talbot",
+    "jobTitle": "Architecte de parcours de golf",
+    "image": "https://talbotgolf.com/public/images/stephane-portrait-1000.jpg",
+    "description": "Ancien joueur professionnel, premier Québécois à jouer le circuit européen de la PGA, devenu architecte de parcours de golf."
+  }
+}
+</script>
 
 <!-- Favicons issus de la charte -->
 <link rel="icon" href="public/logos/talbotgolf-favicon.svg" type="image/svg+xml">
 <link rel="icon" href="public/logos/talbotgolf-favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="public/logos/talbotgolf-favicon-180.png">
 
-<!-- Typographies : Newsreader (titres, légendes italiques) + Archivo (texte, interface, logo) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&display=swap" rel="stylesheet">
+<!-- Typographies hébergées sur le site (voir styles.css, section 0) :
+     Newsreader (titres, légendes italiques) + Archivo (texte, interface, logo).
+     Les deux fichiers visibles dès l'ouverture sont préchargés. -->
+<link rel="preload" href="public/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="public/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="styles.css">
 
@@ -143,7 +176,6 @@
       </figure>
     </article>
 
-    <!-- 03 — Réalisation : le chantier livré, fairways fraîchement tondus -->
     <!-- 03 — Réalisation : un green en cours de modelage, terre encore nue -->
     <article class="temps temps--c">
       <figure class="figure masque parallaxe">
@@ -496,14 +528,15 @@
         <span class="chiffre__legende">années passées sur le terrain</span>
       </li>
       <li class="chiffre reveal">
-        <span class="chiffre__valeur" data-compteur="18">18</span>
-        <span class="chiffre__legende">parcours dessinés ou rénovés</span>
+        <span class="chiffre__valeur" data-compteur="3">3</span>
+        <span class="chiffre__legende">parcours dessinés et construits</span>
       </li>
       <li class="chiffre reveal">
-        <span class="chiffre__valeur" data-compteur="620">620</span>
-        <span class="chiffre__legende">hectares modelés</span>
+        <span class="chiffre__valeur" data-compteur="6">6</span>
+        <span class="chiffre__legende">projets de rénovation</span>
       </li>
     </ul>
+    <p class="chiffres__note reveal">Et plusieurs projets en cours.</p>
   </div>
 </section>
 
@@ -548,7 +581,7 @@
         </div>
         <div class="reveal">
           <dt>Courriel</dt>
-          <dd><a class="lien-trace" href="mailto:contact@talbotgolf.com">contact@talbotgolf.com</a></dd>
+          <dd><a class="lien-trace" href="mailto:stephane@talbotgolf.com">stephane@talbotgolf.com</a></dd>
         </div>
         <div class="reveal">
           <dt>Zone d'intervention</dt>
@@ -578,10 +611,11 @@
         <li><a class="lien-trace" href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <p class="pied__mentions">
-      © <span id="annee">2026</span> TalbotGolf — Conseil, conception et rénovation de parcours de golf.<br>
-      Photographies et vues d'étude&nbsp;: TalbotGolf. Tous droits réservés.
-    </p>
+    <div class="pied__mentions">
+      <p>© <span id="annee">2026</span> TalbotGolf — Conseil, conception et rénovation de parcours de golf.<br>
+      Photographies et vues d'étude&nbsp;: TalbotGolf, sauf mention contraire. Tous droits réservés.</p>
+      <p class="pied__legal"><a class="lien-trace" href="mentions-legales.html">Mentions légales</a> <span aria-hidden="true">·</span> <a class="lien-trace" href="confidentialite.html">Confidentialité</a></p>
+    </div>
   </div>
 </footer>
 
