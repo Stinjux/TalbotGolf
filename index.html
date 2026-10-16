@@ -7,7 +7,7 @@
 <title>TalbotGolf — Conseil, conception et rénovation de parcours de golf</title>
 <meta name="description" content="Stéphane Talbot dessine, modèle et accompagne des parcours de golf, du premier relevé de terrain au premier tour de jeu. Du dessin à l'exploitation.">
 <meta name="author" content="Stéphane Talbot — TalbotGolf">
-<meta name="theme-color" content="#0A2E21">
+<meta name="theme-color" content="#F6F3EB">
 
 <!-- Open Graph / partage social -->
 <meta property="og:type" content="website">
@@ -26,10 +26,9 @@
 <link rel="icon" href="public/logos/talbotgolf-favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="public/logos/talbotgolf-favicon-180.png">
 
-<!-- Typographies : Newsreader (titres, légendes italiques) + Archivo (texte, interface, logo) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&display=swap" rel="stylesheet">
+<!-- Alegreya et Manrope : polices variables locales, accents français inclus. -->
+<link rel="preload" href="public/fonts/alegreya-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="public/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="styles.css">
 
@@ -75,7 +74,7 @@
          srcset="public/images/heros-green-ocean-900.jpg 900w,
                  public/images/heros-green-ocean-1600.jpg 1600w,
                  public/images/heros-green-ocean-2400.jpg 2400w"
-         sizes="100vw" width="2400" height="1480" fetchpriority="high" decoding="async"
+         sizes="(max-width: 880px) 100vw, 52vw" width="2400" height="1480" fetchpriority="high" decoding="async"
          alt="Green bordé de bunkers et de palmiers, face à la plage et à l'océan Atlantique en fin de journée.">
   </div>
 
@@ -122,7 +121,7 @@
       <div class="temps__texte">
         <p class="temps__numero reveal">01</p>
         <h3 class="temps__titre reveal">Conseil<span class="temps__tiret" aria-hidden="true"></span><em>Lire le terrain avant de le toucher</em></h3>
-        <p class="reveal">Relevés, ressource en eau, orientation des vents dominants, nature des sols, usages futurs. Un diagnostic qui dit ce que le site peut porter — et ce qu'il refusera toujours. Avant le moindre trait, un avis franc sur la faisabilité et sur le budget.</p>
+        <p class="reveal">Relevés, ressource en eau, orientation des vents dominants, nature des sols, usages futurs. Un diagnostic qui dit ce que le site peut porter — et ce qu'il refusera toujours. <strong class="temps__enjeu">Avant le moindre trait, un avis franc sur la faisabilité et sur le budget.</strong></p>
       </div>
     </article>
 
@@ -166,7 +165,7 @@
       <div class="temps__texte">
         <p class="temps__numero reveal">04</p>
         <h3 class="temps__titre reveal">Exploitation<span class="temps__tiret" aria-hidden="true"></span><em>Rendre le parcours tenable</em></h3>
-        <p class="reveal">Un beau parcours qui coûte trop cher à entretenir est un parcours raté. Choix des gazons, consommation d'eau, plan d'entretien, formation des équipes, accompagnement des premières saisons jusqu'à ce que le terrain tienne tout seul.</p>
+        <p class="reveal"><strong class="temps__enjeu">Un beau parcours qui coûte trop cher à entretenir est un parcours raté.</strong> Choix des gazons, consommation d'eau, plan d'entretien, formation des équipes, accompagnement des premières saisons jusqu'à ce que le terrain tienne tout seul.</p>
       </div>
       <figure class="figure masque parallaxe">
         <div class="cadre"><img src="public/images/green-en-jeu-1600.jpg"
