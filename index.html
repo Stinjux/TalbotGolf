@@ -100,13 +100,14 @@
 
 <!-- ============================================================ 2. HÉROS ============================================================ -->
 <section class="heros">
+  <div class="heros__scene">
   <div class="heros__media">
     <!-- Image de couverture : chargement immédiat et prioritaire (c'est le plus grand élément affiché à l'ouverture). -->
     <img src="public/images/heros-green-ocean-1600.jpg"
          srcset="public/images/heros-green-ocean-900.jpg 900w,
                  public/images/heros-green-ocean-1600.jpg 1600w,
                  public/images/heros-green-ocean-2400.jpg 2400w"
-         sizes="(max-width: 880px) 100vw, 52vw" width="2400" height="1480" fetchpriority="high" decoding="async"
+         sizes="100vw" width="2400" height="1480" fetchpriority="high" decoding="async"
          alt="Green bordé de bunkers et de palmiers, face à la plage et à l'océan Atlantique en fin de journée.">
   </div>
 
@@ -118,11 +119,14 @@
       <span class="ligne"><span class="ligne__i">Du dessin</span></span>
       <span class="ligne"><span class="ligne__i">à l'exploitation</span></span>
     </h1>
+    <div class="heros__details">
     <p class="heros__accroche reveal">Joueur professionnel devenu architecte. Stéphane Talbot dessine, modèle et accompagne des parcours de golf — du premier relevé de terrain au premier tour de jeu.</p>
     <p class="reveal"><a class="bouton bouton--clair" href="#contact">Parler d'un projet</a></p>
+    </div>
   </div>
 
   <p class="heros__legende reveal">Vue d'étude — janvier 2026</p>
+  </div>
 </section>
 
 <!-- ============================================================ 3. LE MÉTIER ============================================================ -->
@@ -137,8 +141,10 @@
         <span class="ligne"><span class="ligne__i">sur un écran.</span></span>
       </h2>
       <p class="metier__chapo reveal">Il se marche, se creuse, se plante et se tond. Quatre temps qui ne se séparent jamais tout à fait&nbsp;: le même homme lit le terrain, trace les axes, suit les engins, puis revient voir comment l'herbe a pris.</p>
+      <div class="metier__trace" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     </header>
 
+    <div class="metier__etapes">
     <!-- 01 — Conseil : masterplan aérien, la lecture d'ensemble du site -->
     <article class="temps temps--a">
       <figure class="figure masque parallaxe">
@@ -208,6 +214,7 @@
         <figcaption class="legende">Le parcours en jeu, depuis le green du 14</figcaption>
       </figure>
     </article>
+    </div>
 
   </div>
 </section>
