@@ -508,12 +508,14 @@ body::after{
 .chiffres .releve use{ stroke: var(--olive-clair); }
 .chiffres .grille{ position: relative; }
 .chiffres__titre{ grid-column: 1 / -1; margin: 0 0 clamp(48px, 6vw, 88px); color: var(--terre-clair); }
-.chiffres__liste{ grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gouttiere); margin: 0; padding: 0; list-style: none; }
+.chiffres__liste{ grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gouttiere); margin: 0; padding: 0; list-style: none; }
 .chiffre{ padding-top: 22px; border-top: 1px solid var(--filet-clair); }
 .chiffre__valeur{
-  display: block; font: 400 clamp(110px, 15vw, 260px)/.8 var(--serif); letter-spacing: -.04em;
+  display: block; font: 400 clamp(96px, 11.5vw, 210px)/.8 var(--serif); letter-spacing: -.04em; white-space: nowrap;
   color: var(--terre-clair); font-variant-numeric: lining-nums tabular-nums;
 }
+/* Le « + » de « 10+ » : un exposant, hors du compteur pour que l'animation ne l'efface pas. */
+.chiffre__plus{ font-size: .5em; vertical-align: .62em; margin-left: .04em; }
 .chiffre__legende{ display: block; max-width: 20ch; margin-top: 22px; font-size: 16px; line-height: 1.45; color: var(--chaux-70); }
 .chiffres__note{ grid-column: 1 / -1; margin: clamp(40px, 5vw, 72px) 0 0; font: italic 400 clamp(28px, 2.6vw, 44px)/1.1 var(--serif); color: var(--chaux); }
 
@@ -811,7 +813,7 @@ body::after{
   .chiffres__liste{ grid-template-columns: 1fr; gap: 0; }
   .chiffre{ display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); align-items: end; gap: 20px; padding-block: 22px; }
   .chiffre__legende{ margin: 0 0 8px; }
-  .chiffre__valeur{ font-size: clamp(96px, 26vw, 160px); }
+  .chiffre__valeur{ font-size: clamp(80px, 22vw, 150px); }
 
   .carriere__archives{ row-gap: 40px; padding-bottom: 32px; }
   .archive--couverture{ grid-column: 1 / 7; }

@@ -50,7 +50,9 @@ Pour ajouter une année, insérer dans la `<dl class="fiche">` du projet :
 
 ### Contenu inventé, à valider mot à mot
 - **Chiffres clés** — validés : 35 années sur le terrain, 3 parcours dessinés
-  et construits, 6 projets de rénovation, et plusieurs projets en cours.
+  et construits, 6 projets de rénovation, plus de 10 parcours en entretien et
+  maintenance, et plusieurs projets en cours. Le « + » de « 10+ » est hors du
+  compteur (`.chiffre__plus`), pour que l'animation ne l'efface pas.
   → `index.html`, attributs `data-compteur`.
 - **Citation du portrait** — « On ne dessine pas un trou de la même manière quand
   on l'a joué sous pression. » Inventée : elle doit devenir une vraie phrase de
