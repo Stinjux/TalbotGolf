@@ -1,7 +1,17 @@
 # TalbotGolf — site vitrine
 
 Page unique en HTML, CSS et JavaScript natif. Aucune dépendance, aucun build.
-Un serveur Node minimal (`server.mjs`) sert le site en production, sur Railway.
+En production, le site est un ensemble de fichiers statiques déposés chez
+**HostMetro** (hébergement mutualisé Apache) ; `.htaccess` y règle les
+redirections, les en-têtes de sécurité et le cache. Le serveur Node `server.mjs`
+sert au développement local et reste prêt pour un déploiement Railway.
+
+### Mettre en ligne chez HostMetro
+Déposer à la racine du site (gestionnaire de fichiers cPanel ou FTP) :
+`index.html`, `mentions-legales.html`, `confidentialite.html`, `styles.css`,
+`main.js`, `robots.txt`, `sitemap.xml`, **`.htaccess`** (fichier caché : activer
+l'affichage des fichiers cachés) et le dossier `public/` complet, y compris
+`public/fonts/`. Les autres fichiers du dépôt n'ont pas à être déposés.
 
 ```bash
 npm start          # http://localhost:3000
@@ -16,7 +26,8 @@ npm start          # http://localhost:3000
 | `robots.txt`, `sitemap.xml` | référencement |
 | `styles.css` | toutes les variables (couleurs, tailles, durées) en tête de fichier |
 | `main.js` | en-tête au scroll, menu, révélations, compteurs, parallaxe, formulaire |
-| `server.mjs` | serveur statique, en-têtes de sécurité, redirections, `/health` |
+| `.htaccess` | production Apache : redirection www → sans www, en-têtes de sécurité, cache, fichiers interdits |
+| `server.mjs` | serveur Node local (et Railway) : mêmes en-têtes et redirections, `/health` |
 | `Dockerfile`, `railway.toml` | déploiement — tout nouveau fichier à la racine doit être ajouté à la ligne `COPY` du Dockerfile |
 | `public/images/` | photothèque, déclinée en plusieurs largeurs |
 | `public/logos/` | logos TalbotGolf fournis, copiés tels quels |
@@ -70,10 +81,10 @@ aucune mesure d'audience, aucun service tiers. **Tout ajout de ce type
 mettre à jour.** Une relecture par un juriste reste conseillée.
 
 ### Domaine
-Les adresses absolues (canonical, Open Graph, données structurées, `robots.txt`,
-`sitemap.xml`) supposent que le site est servi sur **https://talbotgolf.com/**.
-Si le domaine est différent (www, autre extension), remplacer partout
-`https://talbotgolf.com`.
+L'adresse officielle est **https://talbotgolf.com/** : canonical, Open Graph,
+données structurées, `robots.txt` et `sitemap.xml` l'utilisent.
+`www.talbotgolf.com` répond aussi ; `.htaccess` la redirige (301) vers
+l'adresse sans www, pour que les moteurs de recherche ne voient qu'un site.
 
 ### Formulaire — pas encore connecté
 Le formulaire n'envoie rien vers un serveur. `main.js` ouvre le logiciel de
@@ -183,10 +194,12 @@ sans toucher au JavaScript.
 - **Partage et référencement** : balises Open Graph et Twitter à adresses
   absolues, `canonical`, données structurées schema.org (`ProfessionalService`
   et `Person`), `robots.txt` et `sitemap.xml`.
-- **Sécurité** : `server.mjs` envoie une politique CSP stricte, sans aucune
-  origine extérieure, et un en-tête HSTS. Elle porte
+- **Sécurité** : `.htaccess` (production) et `server.mjs` (local) envoient la
+  même politique CSP stricte, sans aucune origine extérieure, et un en-tête
+  HSTS. Elle porte
   l'empreinte sha256 du court script en ligne de `index.html` — **toute
-  modification de ce script oblige à recalculer l'empreinte**, sinon la page
+  modification de ce script oblige à recalculer l'empreinte**, dans les deux
+  fichiers, sinon la page
   s'affichera sans la classe `js`.
 - **Cache** : page revalidée à chaque visite, CSS et JS 5 minutes, images
   une journée. Les noms de fichiers ne portant pas d'empreinte, un cache long
@@ -201,5 +214,5 @@ sans toucher au JavaScript.
 - [ ] Brancher le formulaire sur un service d'envoi
 - [ ] Renseigner le vrai numéro de téléphone
 - [ ] Compléter les mentions légales (éditeur, immatriculation, hébergeur, droit applicable)
-- [ ] Confirmer le domaine https://talbotgolf.com
+- [ ] Déposer la nouvelle version chez HostMetro, avec `.htaccess`
 - [ ] Vérifier la question des marques pour les logos de circuits

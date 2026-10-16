@@ -1,0 +1,64 @@
+# ==========================================================================
+# TalbotGolf — configuration Apache (hébergement mutualisé HostMetro)
+# Équivalent de server.mjs pour l'hébergement de production.
+# Chaque bloc est protégé par <IfModule> : un module absent est ignoré au lieu
+# de provoquer une erreur 500 sur tout le site.
+# ==========================================================================
+
+# ------------------------------------------------------------ Redirections
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Une seule adresse officielle : https://talbotgolf.com
+  # www.talbotgolf.com y mène par une redirection permanente, pour que Google
+  # ne voie pas deux copies du même site. (Le passage de http:// à https://
+  # est déjà assuré par l'hébergeur : le refaire ici risquerait une boucle.)
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://talbotgolf.com%{REQUEST_URI} [R=301,L]
+
+  # Le site était bilingue : les anciennes adresses /fr/ et /en/ mènent à l'accueil.
+  RewriteRule ^(fr|en)/?$ / [R=301,L]
+</IfModule>
+
+# ------------------------------------------------- Fichiers à ne pas servir
+# Fichiers de développement et de déploiement Railway : inutiles au public.
+<FilesMatch "^(server\.mjs|package\.json|Dockerfile|railway\.toml|README\.md|\.gitignore)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
+
+# ------------------------------------------------------------ Types MIME
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddCharset utf-8 .html .css .js .txt .xml
+</IfModule>
+
+# ------------------------------------------------------ En-têtes de sécurité
+# Même politique que server.mjs. Le sha256 correspond au court script en ligne
+# de <head> d'index.html : toute modification de ce script oblige à recalculer
+# l'empreinte, ici ET dans server.mjs.
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self' 'sha256-g9CG9SjnbZac20R7zoBeOJ3k2VF0kLwLJccW/K1JLcE='; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # Cache : page revalidée à chaque visite, code 5 minutes, images et polices
+  # une journée. Les noms de fichiers ne portent pas d'empreinte : un cache long
+  # figerait une correction pendant des mois.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=300"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|png|svg|webp|woff2)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+# ------------------------------------------------------------ Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml application/xml text/xml text/plain
+</IfModule>
